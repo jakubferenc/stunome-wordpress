@@ -296,14 +296,18 @@ function wpb_list_child_pages() {
 #add in your theme functions.php file
  
 function clean_custom_menu( $theme_location ) {
-    if ( ($theme_location) && ($locations = get_nav_menu_locations()) && isset($locations[$theme_location]) ) {
+
+    if ( ( $theme_location ) && ( $locations = get_nav_menu_locations() ) && isset( $locations[$theme_location] ) ) {
+
         $menu = get_term( $locations[$theme_location], 'nav_menu' );
         $menu_items = wp_get_nav_menu_items($menu->term_id);
 
         $count = 0;
         $main_count = 0;
         $submenu = false;
-         
+        $menu_list = "";
+
+
         foreach( $menu_items as $menu_item ) {
              
             $link = $menu_item->url;
@@ -312,14 +316,16 @@ function clean_custom_menu( $theme_location ) {
             $classes_string = implode(" ", $menu_item->classes);
             
             if ( !$menu_item->menu_item_parent ) {
-                $parent_id = $menu_item->ID;
-                 
-                
 
+                $parent_id = $menu_item->ID;
+
+                /* 
+                    to separate top four and bottom four menu columns
+                    we need to add div.row
+                */
                 if ( $main_count === 0 || $main_count === 4 ) {
 
-
-                     $menu_list .= '<div class="row">' ."\n"; // div.row
+                    $menu_list .= '<div class="row">' ."\n"; // div.row
 
                 }
 
@@ -341,31 +347,38 @@ function clean_custom_menu( $theme_location ) {
                 $menu_list .= '<a href="'.$link.'" class="'.$classes_string.'">'.$title.'</a>' ."\n";
                 $menu_list .= '</li>' ."\n";
                      
+                
+                if ( array_key_exists( $count + 1, $menu_items  ) ) {
+
+                    if ( $menu_items[ $count + 1 ]->menu_item_parent != $parent_id && $submenu ) {
+                        $menu_list .= '</ul>' ."\n";
+                        $submenu = false;
+                    }
+
+                }
+
  
-                if ( $menu_items[ $count + 1 ]->menu_item_parent != $parent_id && $submenu ){
-                    $menu_list .= '</ul>' ."\n";
+            }
+            
+            if ( array_key_exists( $count + 1, $menu_items  ) ) {
+
+                if ( $menu_items[ $count + 1 ]->menu_item_parent != $parent_id ) { 
+                    $menu_list .= '</div>' ."\n";   // end div.col-main-menu   
                     $submenu = false;
+
+
+                    if ( $main_count === 3 || $main_count === 7 )  {
+
+
+                    $menu_list .= '</div>' ."\n"; // end of div.row
+
+                    }
+                    
+                    $main_count++;
+                    
                 }
- 
+
             }
- 
-            if ( $menu_items[ $count + 1 ]->menu_item_parent != $parent_id ) { 
-                $menu_list .= '</div>' ."\n";   // end div.col-main-menu   
-                $submenu = false;
-
-
-                if ( $main_count === 3 || $main_count === 7 )  {
-
-
-                   $menu_list .= '</div>' ."\n"; // end of div.row
-
-                }
-                
-                $main_count++;
-                
-            }
-   
-
 
             $count++;
  
@@ -373,7 +386,9 @@ function clean_custom_menu( $theme_location ) {
 
  
     } else {
+
         $menu_list = '<!-- no menu defined in location "'.$theme_location.'" -->';
+
     }
     
     echo $menu_list;
