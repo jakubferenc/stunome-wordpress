@@ -54,13 +54,13 @@ Thumbs.db
 /config/
 
 #ignore core wordpress folders
-www/*/wp-admin/*
-www/*/wp-includes/*
+wordpress/wp-admin/*
+wordpress/wp-includes/*
 
 
 # ignore everything in the "wp-content" directory, except:
 # themes
 
-www/*/wp-content/*
+wordpress/wp-content/*
 
-!www/*/wp-content/themes/
+!wordpress/wp-content/themes/

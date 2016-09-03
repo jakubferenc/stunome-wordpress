@@ -123,7 +123,7 @@
                             <strong>Tajemník oboru</strong>
                             <br> Mgr. Jakub Fiala
                             <br> fiala.jakub@gmail.com
-                            <br> +420 221 619 910
+                            <br> (+420) 221 619 910
                             <br>
                         </p>
                         <p>

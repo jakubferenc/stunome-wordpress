@@ -13,16 +13,22 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', '');
+define('DB_NAME', 'novamedia');
 
 /** MySQL database username */
-define('DB_USER', '');
+define('DB_USER', 'novamedia');
 
 /** MySQL database password */
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', '3MdQkVANd9UUxvpt');
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');
+
+/** Database Charset to use in creating database tables. */
+define('DB_CHARSET', 'utf8mb4');
+
+/** The Database Collate type. Don't change this if in doubt. */
+define('DB_COLLATE', '');
 
 /**
  * For developers: WordPress debugging mode.
