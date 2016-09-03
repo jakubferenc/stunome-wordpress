@@ -433,13 +433,13 @@ function display_page_actions_social_buttons() {
     echo '<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=' . $current_page . '" class="social-icon social-icon-medium social-icon-facebook-square"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>';
     echo '<a target="_blank" href="https://twitter.com/home?status='. $current_page . '" class="social-icon social-icon-medium social-icon-twitter-square"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>';
     echo '<a href="javascript:window.print()" class="icon icon-print"><i class="fa fa-print" aria-hidden="true"></i></a>';
-    echo '<a href="#" class="icon icon-pdf"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>';
+    //echo '<a href="#" class="icon icon-pdf"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>';
 
     echo '</div>';
     
 }
 
-/** 
+/* 
  Re-use some existing WordPress functions so you don't have to write a bunch of raw PHP to check for SSL, port numbers, etc
  
  Place in your functions.php (or re-use in a plugin)
