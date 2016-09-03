@@ -51,7 +51,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define environment hostnames
-define('WP_ENV_DEV_HOSTNAME', 'local.novamedia.dev');
+define('WP_ENV_DEV_HOSTNAME', 'novamedia.dev');
 define('WP_ENV_STAGING_HOSTNAME', 'novamedianew.ff.cuni.cz');
 define('WP_ENV_PRODUCTION_HOSTNAME', 'novamedia.ff.cuni.cz');
 
