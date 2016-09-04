@@ -50,6 +50,8 @@
                                 <?php while ( $the_query->have_posts() ) : ?>
                                     <?php $the_query->the_post(); ?>
 
+                                            <?php $full_academic_name = get_full_academic_name($post->ID); ?>
+
                                             <div class="col-xs-6 col-md-3">
                                                 <div class="item-profile-thumb item-with-image">
                                                     <a href="<?php echo get_permalink(); ?>" class="item-link">
@@ -68,7 +70,7 @@
                                                                             <div class="item-thumb-title-container">
                                                                                 
                                                                                 
-                                                                                 <h2 class="item-title"><?php the_title() ?></h2>
+                                                                                 <h2 class="item-title"><?php echo $full_academic_name; ?></h2>
                                                                                 
                                                                             </div>
                                                                                 
