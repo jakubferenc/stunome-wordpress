@@ -265,7 +265,7 @@ get_header(); ?>
 
 
 
-                <div class="section-more"><a href="<?php bloginfo('url'); ?>/novinky/nasi-studenti-bloguji/" class="link-section-more">Zobrazit všechny blogy</a></div>
+                <div class="section-more"><a href="<?php bloginfo('url'); ?>/novinky/nasi-studenti-bloguji/" class="link-section-more">Zobrazit další příspěvky</a></div>
 
             </section>
 
