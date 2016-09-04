@@ -22,6 +22,8 @@
         $rozvrh_content = get_field('rozvrh');
         $vyucovane_predmety_content = get_field('predmety');
 
+        $full_academic_name = get_full_academic_name($post->ID);
+
         
     ?>
 
@@ -34,7 +36,7 @@
                 <div class="row no-pd">
 
                     <div class="col-sm-6">
-                        <?php the_title( '<h1 class="page-title">', '</h1>' ); ?>
+                        <h1 class="page-title"><?php echo $full_academic_name ?></h1>
                     </div>
 
                     <div class="col-sm-6">
@@ -126,7 +128,7 @@
 
                 <div class="post-inline-widget">
 
-                    <p><strong><?php the_title() ?></strong></p>
+                    <p><strong><?php echo $full_academic_name ?></strong></p>
                     
                     <?php                  
                         $email = get_post_meta( get_the_ID(), 'email', true );
