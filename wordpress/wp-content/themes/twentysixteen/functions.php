@@ -439,6 +439,20 @@ function display_page_actions_social_buttons() {
     
 }
 
+function get_full_academic_name($post_id) {
+
+    $post_person = get_post( $post_id ); 
+
+    $degree_pre = get_post_meta( $post_person->ID, 'degree_pre', 'true' );
+    $degree_post = get_post_meta( $post_person->ID, 'degree_post', 'true' );
+
+    $name = $post_person->post_title;
+
+    return $degree_pre . " ". $name . $degree_post;
+
+}
+
+
 /* 
  Re-use some existing WordPress functions so you don't have to write a bunch of raw PHP to check for SSL, port numbers, etc
  
