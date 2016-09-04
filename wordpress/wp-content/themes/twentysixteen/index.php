@@ -462,7 +462,7 @@ get_header(); ?>
 
 
                                         <div class="item-image">
-                                            <p>Game studies kriticky analyzují médium počítačových her a zabývají se jejich širšími kulturními, společenskými a politickými aspekty.</p>
+                                            <p>Game studies kriticky analyzují médium počítačových her a zabývají se jejich širšími kulturními, společenskými a politickými aspekty</p>
                                         </div>
 
 
