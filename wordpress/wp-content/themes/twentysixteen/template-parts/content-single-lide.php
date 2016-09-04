@@ -17,7 +17,12 @@
         }
 
         $this_post_categories = array_map('filter_array', get_the_category( $post->ID ));
-    
+
+        $publikace_content = get_field('publikace');
+        $rozvrh_content = get_field('rozvrh');
+        $vyucovane_predmety_content = get_field('predmety');
+
+        
     ?>
 
     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -85,54 +90,20 @@
                             <div id="publikace" class="active tab-pane section-content post-section-content">
 
 
-                                <ul>
-                                    <li>Puc J., Roreitner R., Rabas M., Javorská A., Miškovský M., Fridmanová M., Martínková I., Šlerka J., Chavalka J., Sepp H., Lomozová P.: Filosofie lidského, příliš lidského. Červený Kostelec, Pavel Mervart, 2011. 233 s. • p. ISBN 978-80-87378-86-1.</li>
-                                    <li>Šlerka J.: <em>Patos distance jako cíl rétorické strategie</em>. In Puc J., Fridmanová M.: Filosofie lidského, příliš lidského. Červený Kostelec, Pavel Mervart, 2011, s. • p. 147-158. ISBN 978-80-87378-86-1.</li>
-                                    <li>Šlerka J.: <em>Karel Čapek and semiotics</em>. In Doubravová J., Schuster R.: Cultures as Sign Systems and Processes : transdisciplinary Czech-Austrian symposium in Linz in the focus "inter.kultur" and the series "Open Borders". Plzeň, University of West Bohemia, 2011, s. • p. 37-53. ISBN 978-80-7043-924-1.</li>
-                                    <li>Šlerka J., Smolík F.: <em>Automatická měřítka čitelnosti pro česky psané texty</em>. Studie z aplikované lingvistiky, 2010, č. • no. 1, s. • p. 33 - 44. ISSN 1804-3240.</li>
-
-                                    <li>Puc J., Roreitner R., Rabas M., Javorská A., Miškovský M., Fridmanová M., Martínková I., Šlerka J., Chavalka J., Sepp H., Lomozová P.: Filosofie lidského, příliš lidského. Červený Kostelec, Pavel Mervart, 2011. 233 s. • p. ISBN 978-80-87378-86-1.</li>
-                                    <li>Šlerka J.: <em>Patos distance jako cíl rétorické strategie</em>. In Puc J., Fridmanová M.: Filosofie lidského, příliš lidského. Červený Kostelec, Pavel Mervart, 2011, s. • p. 147-158. ISBN 978-80-87378-86-1.</li>
-                                    <li>Šlerka J.: <em>Karel Čapek and semiotics</em>. In Doubravová J., Schuster R.: Cultures as Sign Systems and Processes : transdisciplinary Czech-Austrian symposium in Linz in the focus "inter.kultur" and the series "Open Borders". Plzeň, University of West Bohemia, 2011, s. • p. 37-53. ISBN 978-80-7043-924-1.</li>
-                                    <li>Šlerka J., Smolík F.: <em>Automatická měřítka čitelnosti pro česky psané texty</em>. Studie z aplikované lingvistiky, 2010, č. • no. 1, s. • p. 33 - 44. ISSN 1804-3240.</li>
-
-                                </ul>
+                                <?php echo $publikace_content; ?>
 
 
                             </div>
                             <div id="rozvrh" class="tab-pane section-content post-section-content">
 
 
-                                <ul>
-                                    <li>Puc J., Roreitner R., Rabas M., Javorská A., Miškovský M., Fridmanová M., Martínková I., Šlerka J., Chavalka J., Sepp H., Lomozová P.: Filosofie lidského, příliš lidského. Červený Kostelec, Pavel Mervart, 2011. 233 s. • p. ISBN 978-80-87378-86-1.</li>
-                                    <li>Šlerka J.: <em>Patos distance jako cíl rétorické strategie</em>. In Puc J., Fridmanová M.: Filosofie lidského, příliš lidského. Červený Kostelec, Pavel Mervart, 2011, s. • p. 147-158. ISBN 978-80-87378-86-1.</li>
-                                    <li>Šlerka J.: <em>Karel Čapek and semiotics</em>. In Doubravová J., Schuster R.: Cultures as Sign Systems and Processes : transdisciplinary Czech-Austrian symposium in Linz in the focus "inter.kultur" and the series "Open Borders". Plzeň, University of West Bohemia, 2011, s. • p. 37-53. ISBN 978-80-7043-924-1.</li>
-                                    <li>Šlerka J., Smolík F.: <em>Automatická měřítka čitelnosti pro česky psané texty</em>. Studie z aplikované lingvistiky, 2010, č. • no. 1, s. • p. 33 - 44. ISSN 1804-3240.</li>
-
-                                    <li>Puc J., Roreitner R., Rabas M., Javorská A., Miškovský M., Fridmanová M., Martínková I., Šlerka J., Chavalka J., Sepp H., Lomozová P.: Filosofie lidského, příliš lidského. Červený Kostelec, Pavel Mervart, 2011. 233 s. • p. ISBN 978-80-87378-86-1.</li>
-                                    <li>Šlerka J.: <em>Patos distance jako cíl rétorické strategie</em>. In Puc J., Fridmanová M.: Filosofie lidského, příliš lidského. Červený Kostelec, Pavel Mervart, 2011, s. • p. 147-158. ISBN 978-80-87378-86-1.</li>
-                                    <li>Šlerka J.: <em>Karel Čapek and semiotics</em>. In Doubravová J., Schuster R.: Cultures as Sign Systems and Processes : transdisciplinary Czech-Austrian symposium in Linz in the focus "inter.kultur" and the series "Open Borders". Plzeň, University of West Bohemia, 2011, s. • p. 37-53. ISBN 978-80-7043-924-1.</li>
-                                    <li>Šlerka J., Smolík F.: <em>Automatická měřítka čitelnosti pro česky psané texty</em>. Studie z aplikované lingvistiky, 2010, č. • no. 1, s. • p. 33 - 44. ISSN 1804-3240.</li>
-
-                                </ul>
-
+                                <?php echo $rozvrh_content; ?>
 
                             </div>
                             <div id="vyucovane-predmety" class="tab-pane section-content post-section-content">
 
 
-                                <ul>
-                                    <li>Puc J., Roreitner R., Rabas M., Javorská A., Miškovský M., Fridmanová M., Martínková I., Šlerka J., Chavalka J., Sepp H., Lomozová P.: Filosofie lidského, příliš lidského. Červený Kostelec, Pavel Mervart, 2011. 233 s. • p. ISBN 978-80-87378-86-1.</li>
-                                    <li>Šlerka J.: <em>Patos distance jako cíl rétorické strategie</em>. In Puc J., Fridmanová M.: Filosofie lidského, příliš lidského. Červený Kostelec, Pavel Mervart, 2011, s. • p. 147-158. ISBN 978-80-87378-86-1.</li>
-                                    <li>Šlerka J.: <em>Karel Čapek and semiotics</em>. In Doubravová J., Schuster R.: Cultures as Sign Systems and Processes : transdisciplinary Czech-Austrian symposium in Linz in the focus "inter.kultur" and the series "Open Borders". Plzeň, University of West Bohemia, 2011, s. • p. 37-53. ISBN 978-80-7043-924-1.</li>
-                                    <li>Šlerka J., Smolík F.: <em>Automatická měřítka čitelnosti pro česky psané texty</em>. Studie z aplikované lingvistiky, 2010, č. • no. 1, s. • p. 33 - 44. ISSN 1804-3240.</li>
-
-                                    <li>Puc J., Roreitner R., Rabas M., Javorská A., Miškovský M., Fridmanová M., Martínková I., Šlerka J., Chavalka J., Sepp H., Lomozová P.: Filosofie lidského, příliš lidského. Červený Kostelec, Pavel Mervart, 2011. 233 s. • p. ISBN 978-80-87378-86-1.</li>
-                                    <li>Šlerka J.: <em>Patos distance jako cíl rétorické strategie</em>. In Puc J., Fridmanová M.: Filosofie lidského, příliš lidského. Červený Kostelec, Pavel Mervart, 2011, s. • p. 147-158. ISBN 978-80-87378-86-1.</li>
-                                    <li>Šlerka J.: <em>Karel Čapek and semiotics</em>. In Doubravová J., Schuster R.: Cultures as Sign Systems and Processes : transdisciplinary Czech-Austrian symposium in Linz in the focus "inter.kultur" and the series "Open Borders". Plzeň, University of West Bohemia, 2011, s. • p. 37-53. ISBN 978-80-7043-924-1.</li>
-                                    <li>Šlerka J., Smolík F.: <em>Automatická měřítka čitelnosti pro česky psané texty</em>. Studie z aplikované lingvistiky, 2010, č. • no. 1, s. • p. 33 - 44. ISSN 1804-3240.</li>
-
-                                </ul>
+                                <?php echo $vyucovane_predmety_content; ?>
 
 
                             </div>
