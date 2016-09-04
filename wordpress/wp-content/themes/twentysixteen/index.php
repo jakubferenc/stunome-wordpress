@@ -568,12 +568,14 @@ get_header(); ?>
 
 
 
-                            <?php $the_query = new WP_Query( array( 'post_type' => 'osoba', 'category_name' => 'Vyučující, Doktorandi', 'posts_per_page' => 9, 'orderby' => 'rand') ); ?>
+                            <?php $the_query = new WP_Query( array( 'post_type' => 'osoba', 'category_name' => 'Vyučující', 'posts_per_page' => 9, 'orderby' => 'rand') ); ?>
                                 <?php 
                                     if ( $the_query->have_posts() ): ?>
 
                                     <?php while ( $the_query->have_posts() ) : ?>
                                         <?php $the_query->the_post(); ?>
+                                            
+                                            <?php $full_academic_name = get_full_academic_name($post->ID); ?>
 
                                             <div class="col-xs-6 col-md-4">
                                                 <div class="item-profile-thumb item-with-image">
@@ -592,7 +594,7 @@ get_header(); ?>
                                                                             
                                                                             <div class="item-thumb-title-container">
                                                                                 
-                                                                                 <h2 class="item-title"><?php the_title() ?></h2>
+                                                                                 <h2 class="item-title"><?php echo $full_academic_name; ?></h2>
                                                                                 
                                                                             </div>
                                                                             
