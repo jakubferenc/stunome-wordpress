@@ -24,6 +24,10 @@
 
         $full_academic_name = get_full_academic_name($post->ID);
 
+        $twitter_description = get_post_meta( get_the_ID(), 'twitter_description', true );
+
+        $real_content = ( ! empty ( get_the_content() ) ) ? get_the_content() : $twitter_description;
+
         
     ?>
 
@@ -66,7 +70,8 @@
 
 
                 <?php
-                    the_content();
+                    
+                    echo $real_content; 
 
                     ?>
                        
@@ -135,6 +140,7 @@
                         $phone = get_post_meta( get_the_ID(), 'phone', true );
                         $consultation_hours = get_post_meta( get_the_ID(), 'consultation_hours', true );
                         $twitter_username = get_post_meta( get_the_ID(), 'twitter_username', true );
+                        
                     ?>
                     
                     
