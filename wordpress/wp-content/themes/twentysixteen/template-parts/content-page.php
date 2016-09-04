@@ -58,7 +58,7 @@
 
         <div class="page-content clearfix row">
 
-            <div class="post-content col-md-7">
+            <div class="post-content col-md-11">
 
 
                 <?php
