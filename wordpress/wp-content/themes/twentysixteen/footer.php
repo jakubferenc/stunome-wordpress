@@ -106,7 +106,6 @@
                         </h3>
 
                         <ul class="nav menu-submenu ">
-                            <li><a href="<?php bloginfo('url'); ?>/kontakt/kontaktni-formular/">Kontaktní formulář</a></li>
                             <li><a href="<?php bloginfo('url'); ?>/kontakt/napiste-nam/">Napište nám</a></li>
 
                         </ul>
