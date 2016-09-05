@@ -61,6 +61,7 @@
             <div class="grid">
 
                 <div class="row ">
+                 <?php $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1; ?>
 
                                                 <?php $the_query = new WP_Query( array( 
                                                     'post_type' => 'wprss_feed_item', 
@@ -71,7 +72,8 @@
                                                             'compare' => '=',
                                                         ),
                                                     ), 
-                                                    'posts_per_page' => 20, 
+                                                    'posts_per_page' => 12, 
+                                                    'paged' => $paged,
                                                     'orderby' => '') ); 
                                             ?>
                         <?php 
@@ -141,7 +143,12 @@
 
                             </div>
 
-                            <div class="section-more"><a href="#" class="link-section-more">Další příspěvky</a></div>
+                            <div class="section-more">
+                                   
+                                <div class="nav-next alignright link-section-more"><?php previous_posts_link( 'Novější akce' ); ?></div>
+                                <div class="nav-previous alignleft link-section-more"><?php next_posts_link( 'Starší akce', $the_query->max_num_pages ); ?></div>
+
+                            </div>
 
 
 
