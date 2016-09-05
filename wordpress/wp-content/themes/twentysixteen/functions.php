@@ -452,6 +452,11 @@ function get_full_academic_name($post_id) {
 
 }
 
+function get_linkedin_link($username) {
+
+    return "https://www.linkedin.com/in/{$username}";
+
+}
 
 /* 
  Re-use some existing WordPress functions so you don't have to write a bunch of raw PHP to check for SSL, port numbers, etc
