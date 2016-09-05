@@ -36,6 +36,8 @@
 
         $linkedin_username = get_post_meta( get_the_ID(), 'linkedin_username', true );
 
+        $blog_feed_id = get_post_meta( get_the_ID(), 'blog_feed_id', true );
+        $blog_url = get_post_meta( get_the_ID(), 'blog_url', true );
                         
         
     ?>
@@ -78,11 +80,7 @@
             <div class="post-content col-md-7">
 
 
-                <?php
-                    
-                    echo $real_content; 
-
-                    ?>
+               <p> <?php echo $real_content; ?></p>
                        
                     <?php if ( in_array( 9, $this_post_categories ) || in_array( 12, $this_post_categories )): ?>
 
@@ -132,6 +130,68 @@
 
                     <?php endif; ?>
 
+                    <?php if ( ! empty ( $blog_feed_id ) ): ?>
+                        
+                        <div class="profile-section profile-section-blogs">
+
+                            <h2 class="section-title"><?php echo __('Blogové příspěvky'); ?></h2>
+
+                            <div class="block section section-blogs section-widget section-blogs-widget">   
+
+                                <?php $the_query = new WP_Query( array( 
+                                        'post_type' => 'wprss_feed_item', 
+                                        'meta_query' => array(
+                                            array(
+                                                'key' => 'wprss_feed_id',
+                                                'value' => $blog_feed_id ,  
+                                                'compare' => '=',
+                                            ),
+                                        ), 
+                                        'posts_per_page' => 6, 
+                                        'orderby' => '') ); 
+                                    ?>
+                                <?php if ( $the_query->have_posts() ): ?>
+
+                                <?php while ( $the_query->have_posts() ) : ?>
+                                    <?php $the_query->the_post(); ?>
+                                        
+                    
+                                    
+                                    <?php $feed_id = get_post_meta( $post->ID, 'wprss_feed_id', true ); ?>
+                                    
+                                    <?php $feed_url = get_post_meta( $post->ID, 'wprss_item_permalink', true ); ?>
+                                    
+                                    <?php $post_feed = get_post( $feed_id ); ?>
+                                
+                                    <?php $feed_author = $post_feed->post_title; ?>
+                                    
+                                    <div class="item-event item-event-thumb">
+                                        
+                                        <a href="<?php echo $feed_url; ?>" class="item-links">
+                                            <div class="item-event-header item-event-date"> <?php the_date() ?> / <?php echo $feed_author ?></div>
+                                            <div class="item-event-content-container">
+                    
+                                            <h3 class="item-event-title"><?php the_title() ?></h3>
+
+                                            </div>
+
+                                            
+                                        </a>
+                                
+                                    </div>
+                                    <?php endwhile; ?>
+
+                                        <?php else: ?>
+                                        // no posts found
+                                        <?php endif; ?>
+
+                                    <?php /* Restore original Post Data */ wp_reset_postdata(); ?>                              
+                    
+
+                            </div>
+                            
+                        </div>        
+                    <?php endif; ?>
 
 
             </div>
@@ -163,6 +223,10 @@
                     <?php if ( ! empty(  $linkedin_username ) ): ?>
                     <p class="email linkedin"><strong>LinkedIn:</strong> <a href="<?php echo get_linkedin_link($linkedin_username) ?>">@<?php echo $linkedin_username ?></a></p>    
                     <?php endif; ?>                 
+
+                    <?php if ( ! empty(  $blog_url ) ): ?>
+                    <p class="email blog"><strong>Blog:</strong> <a href="//<?php echo $blog_url ?>"><?php echo $blog_url ?></a></p>    
+                    <?php endif; ?> 
 
                 </div>
 
