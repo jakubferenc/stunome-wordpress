@@ -25,9 +25,18 @@
         $full_academic_name = get_full_academic_name($post->ID);
 
         $twitter_description = get_post_meta( get_the_ID(), 'twitter_description', true );
+        $twitter_username = get_post_meta( get_the_ID(), 'twitter_username', true );
 
+        // if post_content exists, display it, otherwise prefer twitter_description
         $real_content = ( ! empty ( get_the_content() ) ) ? get_the_content() : $twitter_description;
 
+        $email = get_post_meta( get_the_ID(), 'email', true );
+        $phone = get_post_meta( get_the_ID(), 'phone', true );
+        $consultation_hours = get_post_meta( get_the_ID(), 'consultation_hours', true );
+
+        $linkedin_username = get_post_meta( get_the_ID(), 'linkedin_username', true );
+
+                        
         
     ?>
 
@@ -134,16 +143,7 @@
                 <div class="post-inline-widget">
 
                     <p><strong><?php echo $full_academic_name ?></strong></p>
-                    
-                    <?php                  
-                        $email = get_post_meta( get_the_ID(), 'email', true );
-                        $phone = get_post_meta( get_the_ID(), 'phone', true );
-                        $consultation_hours = get_post_meta( get_the_ID(), 'consultation_hours', true );
-                        $twitter_username = get_post_meta( get_the_ID(), 'twitter_username', true );
-                        
-                    ?>
-                    
-                    
+          
                     <?php if ( ! empty(  $email ) ): ?>
                         <p class="email"><strong>E-mail:</strong> <?php echo $email ?></p>    
                     <?php endif; ?>
@@ -154,11 +154,15 @@
                        
                     <?php if ( ! empty(  $consultation_hours ) ): ?>
                         <p class="email"><strong>Konzultační hodiny:</strong> <?php echo $consultation_hours ?></p>    
-                    <?php endif; ?>                        
+                    <?php endif; ?>  
+
                     <?php if ( ! empty(  $twitter_username ) ): ?>
-                    <p class="email"><strong>Twitter:</strong> <a href="//twitter.com/<?php echo $twitter_username ?>">@<?php echo $twitter_username ?></a></p>    
+                    <p class="email twitter"><strong>Twitter:</strong> <a href="//twitter.com/<?php echo $twitter_username ?>">@<?php echo $twitter_username ?></a></p>    
                     <?php endif; ?>   
-                
+
+                    <?php if ( ! empty(  $linkedin_username ) ): ?>
+                    <p class="email linkedin"><strong>LinkedIn:</strong> <a href="<?php echo get_linkedin_link($linkedin_username) ?>">@<?php echo $linkedin_username ?></a></p>    
+                    <?php endif; ?>                 
 
                 </div>
 
