@@ -68,7 +68,7 @@
                                                     'meta_query' => array(
                                                         array(
                                                             'key' => 'wprss_feed_id',
-                                                            'value' => 9270,  
+                                                            'value' => 11381,  
                                                             'compare' => '=',
                                                         ),
                                                     ), 
