@@ -677,15 +677,17 @@ class StunomeUsersImport {
 
                     // updating blog feed
 
+                    echo "Updating Blog Feed URL: ";
+
+                    $existing_blog_feed_id = custom_post_exists_by_title ( $build_new_user['real_name'], 'wprss_feed' );
+
                     if ( ! empty ( $build_new_user['blog_feed_url'] ) ) {   
-
-                        echo "Updating Blog Feed URL: ";
-
-                        $existing_blog_feed_id = custom_post_exists_by_title ( $build_new_user['real_name'], 'wprss_feed' );
 
                         if ( ! $existing_blog_feed_id && ! is_wp_error( $existing_blog_feed_id )) {
 
-                            // user existed before, but did not have a blog feed added
+                            // user existed before, but did not have a blog feed, we add a new one
+
+                            echo "user existed before, but did not have a blog feed, we add a new one <br>";
 
                             $post_blog_feed_id = wp_insert_post(array (
                                 'post_type' => 'wprss_feed',
@@ -710,30 +712,34 @@ class StunomeUsersImport {
                             // adding blog_feed_id to the profile meta for future referencing (which is faster by id than name) 
                             echo "Adding blog feed ID to profile meta data: ";
 
-                            add_post_meta($existing_id, 'blog_feed_id', $post_blog_feed_id);
+                            update_post_meta($existing_id, 'blog_feed_id', $post_blog_feed_id);
 
                             echo " <strong>OK</strong> <br>";                               
 
                         } else {
-
-                            $existing_blog_feed_id = custom_post_exists_by_title ( $build_new_user['real_name'], 'wprss_feed' );
-
-                            if ( ! $existing_blog_feed_id && ! is_wp_error( $existing_blog_feed_id )) {
-
-                                 // user has had a blog, but now there appears to be no url, so we delete the old blog
-
-                                 echo "user has had a blog, but now there appears to be no url, so we delete the old blog";
-
-                                 wp_delete_post( $existing_blog_feed_id, true );
-
-                                 echo " <strong>OK</strong> <br>";          
-
-                            }
-
+         
                             // user has an existing feed, let's update the url'
+
+                            echo "user has an existing feed, let's update the url";
+
                             update_post_meta($existing_blog_feed_id, 'wprss_url', $build_new_user['blog_feed_url']); 
 
                         }
+
+                    } else {
+
+                        if ( $existing_blog_feed_id && ! is_wp_error( $existing_blog_feed_id )) {
+
+                            // user had a blog, but now there appears to be no url, so we delete the old blog feed
+
+                            echo "user had a blog, but now there appears to be no url, so we delete the old blog feed";
+
+                            wp_delete_post( $existing_blog_feed_id, true );
+
+                            echo " <strong>OK</strong> <br>";
+
+                        }
+ 
 
                     }
 
