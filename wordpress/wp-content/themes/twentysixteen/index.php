@@ -45,21 +45,20 @@ get_header(); ?>
                                                     'meta_query' => array(
                                                         array(
                                                             'key' => 'wprss_feed_id',
-                                                            'value' => 359,  
+                                                            'value' => 9270,  
                                                             'compare' => '=',
                                                         ),
                                                     ), 
                                                     'posts_per_page' => 6, 
-                                                    'orderby' => '') ); 
+                                                    'order' => 'DESC',
+                                                    'orderby' => 'date') ); 
                                             ?>
                                 <?php 
                                     if ( $the_query->have_posts() ): ?>
 
                                     <?php while ( $the_query->have_posts() ) : ?>
                                         <?php $the_query->the_post(); ?>
-                                           
-                            
-                                            
+                                          
                                             <?php $feed_id = get_post_meta( $post->ID, 'wprss_feed_id', true ); ?>
                                            
                                             <?php $feed_url = get_post_meta( $post->ID, 'wprss_item_permalink', true ); ?>
@@ -68,7 +67,7 @@ get_header(); ?>
                                             <div class="item-event item-event-thumb">
                                                 
                                                 <a href="<?php echo $feed_url; ?>" class="item-links">
-                                                              <div class="item-event-header item-event-date"> </div>
+                                                  <div class="hidden item-event-header item-event-date"> </div>
                                                   <div class="item-event-content-container">
                             
                                                     <h3 class="item-event-title"><?php the_title() ?></h3>
@@ -81,64 +80,60 @@ get_header(); ?>
                                             </div>
                                             <?php endwhile; ?>
 
-                                                <?php else: ?>
-                                                    // no posts found
-                                                    <?php endif; ?>
+                                        <?php else: ?>
+                                            // no posts found
+                                        <?php endif; ?>
 
-                                                        <?php /* Restore original Post Data */ wp_reset_postdata(); ?>                              
-                        
-
-            
-
+                                         <?php /* Restore original Post Data */ wp_reset_postdata(); ?>                              
+                   
                     </div>
                     <div id="snm-events" class="tab-content-events tab-pane">
 
+                    <?php 
+
+                        require_once ( get_template_directory() . "/config/config.php" );
+                        require_once ( get_template_directory() . "/inc/ics-parser-master/class.iCalReader.php" );
+
+                        $ical  = new ICal($config['google_calendars_ics']['snm']);
+                        $events = $ical->events();
+
+                        
+                        
+                    ?>
+
+                    <?php foreach ( $events as $event ): ?>
+
+                        <?php
+                            $event_name = isset( $event['SUMMARY'] ) ? $event['SUMMARY'] : '';
+                            $event_dtstart = isset( $event['DTSTART'] ) ? $event['DTSTART'] : '';
+                            $event_description = isset( $event['DESCRIPTION'] ) ? $event['DESCRIPTION'] : '';
+                            $event_location = isset( $event['LOCATION'] ) ? $event['LOCATION'] : '';
+
+                            preg_match('/(https?:\/\/)?(www\.)?facebook.com\/[a-zA-Z0-9-\/]*/', $event_description, $matches_link);
+                            
+                        ?>
 
                         <div class="item-event item-event-thumb">
-
-                            <div class="item-event-header item-event-date">27. dubna 2016, 19:00</div>
-                            <div class="item-event-content-container">
-                                <a href="#">
-                                    <h3 class="item-event-title">Festival humanity a solidarity</h3>
-
-                                    <div class="item-event-content">
-                                        <p>Užijte si arabskou hudbu ze Sýrie, divoké rytmy v balkánském tempu nebo kousavé [...]</p>
-                                    </div>
-                                </a>
-
-                            </div>
-
-                        </div>
-                        <div class="item-event item-event-thumb">
-
-                            <div class="item-event-header item-event-date">15. dubna 2016, 19:00</div>
-                            <div class="item-event-content-container">
-                                <a href="#">
-                                    <h3 class="item-event-title">Festival humanity a solidarity</h3>
+                            
+                            <a href="//<?php echo $matches_link[0] ?>" class="item-links">
+                                <div class=" item-event-header item-event-date"><?php echo date('H:i j. n. Y', strtotime( $event_dtstart ) ) ; ?></div>
+                                <div class="item-event-content-container">
+        
+                                    <h3 class="item-event-title"><?php echo $event_name; ?></h3>
 
                                     <div class="item-event-content">
-                                        <p>Užijte si arabskou hudbu ze Sýrie, divoké rytmy v balkánském tempu [...]</p>
+                                        <p><?php echo wp_trim_words( $event_description, 20, ' [...]' ); ?></p>
                                     </div>
-                                </a>
 
-                            </div>
+                                </div>
 
+                                
+                            </a>
+                    
                         </div>
-                        <div class="item-event item-event-thumb">
+  
+                    <?php endforeach; ?>
 
-                            <div class="item-event-header item-event-date">15. dubna 2016, 19:00</div>
-                            <div class="item-event-content-container">
-                                <a href="#">
-                                    <h3 class="item-event-title">Festival humanity a solidarity</h3>
-
-                                    <div class="item-event-content">
-                                        <p>Užijte si arabskou hudbu ze Sýrie, divoké rytmy v balkánském tempu nebo kousavé [...]</p>
-                                    </div>
-                                </a>
-
-                            </div>
-
-                        </div>
 
 
                     </div>
@@ -214,7 +209,7 @@ get_header(); ?>
                                                     'meta_query' => array(
                                                         array(
                                                             'key' => 'wprss_feed_id',
-                                                            'value' => 359,  
+                                                            'value' => 9270,  
                                                             'compare' => 'NOT LIKE',
                                                         ),
                                                     ), 

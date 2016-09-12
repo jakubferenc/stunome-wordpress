@@ -69,7 +69,9 @@ function upload_attachment_from_url($url, $post_id, $desc, $update = false) {
             // Set variables for storage
             // fix file filename for query strings
             preg_match('/[^\?]+\.(jpg|JPG|jpe|JPE|jpeg|JPEG|gif|GIF|png|PNG)/', $url, $matches);
+
             $file_array['name'] = basename($matches[0]);
+
             $file_array['tmp_name'] = $tmp;
 
          }
@@ -78,9 +80,9 @@ function upload_attachment_from_url($url, $post_id, $desc, $update = false) {
         $id = media_handle_sideload( $file_array, $post_id, $desc );
   
         // If error storing permanently, unlink
-        if ( is_wp_error($id) ) {
+        if ( is_wp_error( $id ) ) {
 
-            throw new Exception( $id->get_error_messages() );
+            throw new Exception( 'Nepodařilo se uložit twitter profilovou fotografii na server' );
 
             @unlink($file_array['tmp_name']);
 

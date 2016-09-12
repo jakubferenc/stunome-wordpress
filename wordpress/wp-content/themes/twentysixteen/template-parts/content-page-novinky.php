@@ -66,8 +66,15 @@
                         $cat_id = get_cat_ID('sticky');
                         
                     ?>
+                        <?php $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1; ?>
 
-                        <?php $the_query = new WP_Query( array( 'category_name' => '', 'category__not_in' => array( $cat_id), 'posts_per_page' => 12 ) ); ?>
+                        <?php $the_query = new WP_Query( array( 
+                            'category_name' => '',
+                            'category__not_in' => array( $cat_id), 
+                            'posts_per_page' => 12,
+                            'paged' => $paged
+                        ) ); ?>
+
                             <?php 
                                     if ( $the_query->have_posts() ): ?>
 
@@ -117,7 +124,14 @@
 
             </div>
 
-            <div class="section-more"><a href="#" class="link-section-more">Další novinky</a></div>
+            <div class="section-more">
+            
+                                
+                <div class="nav-next alignright link-section-more"><?php previous_posts_link( 'Novější novinky' ); ?></div>
+                <div class="nav-previous alignleft link-section-more"><?php next_posts_link( 'Starší novinky', $the_query->max_num_pages ); ?></div>
+
+            
+            </div>
 
 
 

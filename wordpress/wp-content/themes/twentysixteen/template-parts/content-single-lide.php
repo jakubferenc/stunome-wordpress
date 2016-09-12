@@ -91,9 +91,24 @@
 
                             <ul class="nav nav-tabs">
 
+                                <?php if ( ! empty ( $publikace_content ) && $publikace_content !== 'Zatím žádné publikace' ): ?>
                                 <li class="active"><a data-toggle="tab" href="#publikace">Publikace</a></li>
-                                <li><a data-toggle="tab" href="#rozvrh">Rozvrh</a></li>
+                                <?php endif; ?>
+
+                                <?php if ( ! empty ( $rozvrh_content ) ): ?>
+
+                                    <?php if ( empty ( $publikace_content ) or $publikace_content === 'Zatím žádné publikace' ): ?>
+                                    <li class="active">
+                                    <?php else: ?>
+                                    <li>
+                                    <?php endif; ?>
+                                    <a data-toggle="tab" href="#rozvrh">Rozvrh</a></li>
+
+                                <?php endif; ?>
+
+                                <?php if ( ! empty ( $vyucovane_predmety_content ) ): ?>
                                 <li><a data-toggle="tab" href="#vyucovane-predmety">Vyučované předměty</a></li>
+                                <?php endif; ?>
 
                             </ul>
 
@@ -101,6 +116,7 @@
                         
                         <div class="tab-content">
 
+                            <?php if ( ! empty ( $publikace_content ) && $publikace_content !== 'Zatím žádné publikace'): ?>
                             <div id="publikace" class="active tab-pane section-content post-section-content">
 
 
@@ -108,12 +124,18 @@
 
 
                             </div>
-                            <div id="rozvrh" class="tab-pane section-content post-section-content">
+                            <?php endif; ?>
+
+                            <?php if ( ! empty ( $rozvrh_content ) ): ?>
+                            <div id="rozvrh" class="tab-pane <?php if ( empty ( $publikace_content ) or $publikace_content === 'Zatím žádné publikace' ): ?>active<?php endif; ?> section-content post-section-content">
 
 
                                 <?php echo $rozvrh_content; ?>
 
                             </div>
+                            <?php endif; ?>
+
+                            <?php if ( ! empty ( $vyucovane_predmety_content ) ): ?>
                             <div id="vyucovane-predmety" class="tab-pane section-content post-section-content">
 
 
@@ -121,6 +143,7 @@
 
 
                             </div>
+                            <?php endif; ?>
 
                         </div>
 
@@ -230,15 +253,20 @@
 
                 </div>
 
+                <div class="post-inline-image">
                 <?php if (has_post_thumbnail( $post->ID ) ): ?>
                     <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'item-detail-aside' ); ?>
                     <?php $image_full = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), '' ); ?>
-                            <div class="post-inline-image">
-                                <img src="<?php echo $image[0]; ?>">
-                            </div>
+                            
+                        <img src="<?php echo $image[0]; ?>">
+                            
 
+                <?php else: ?>
+                    
+                        <img src="<?php echo get_template_directory_uri() ?>/img/profile_picture_default.png">
+                    
                 <?php endif; ?>
-
+                </div>
 
 
             </div>

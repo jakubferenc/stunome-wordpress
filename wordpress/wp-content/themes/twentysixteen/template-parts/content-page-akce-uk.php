@@ -68,12 +68,13 @@
                                                     'meta_query' => array(
                                                         array(
                                                             'key' => 'wprss_feed_id',
-                                                            'value' => 359,  
+                                                            'value' => 9270,  
                                                             'compare' => '=',
                                                         ),
                                                     ), 
                                                     'posts_per_page' => 12, 
                                                     'paged' => $paged,
+                                                    'order' => 'DESC',
                                                     'orderby' => '') ); 
                                             ?>
                         <?php 

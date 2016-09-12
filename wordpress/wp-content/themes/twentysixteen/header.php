@@ -150,11 +150,15 @@ Stunome není jen škola, je to životní styl
     
                                                         <?php if (has_post_thumbnail( $post->ID ) ): ?>
                                                             <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'item-with-image' ); ?>
-                                                                <?php $image_full = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), '' ); ?>
-                                               
-                                                                <a href="<?php echo get_permalink( $post->ID) ?>" class="person-head" style="background-image: url(<?php echo $image[0]; ?>)">
+                                                            <?php $image_full = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), '' ); ?>
+                                            
+                                                            <a href="<?php echo get_permalink( $post->ID) ?>" class="person-head" style="background-image: url(<?php echo $image[0]; ?>)">
 
-                                                                    <?php endif; ?>
+                                                         <?php else: ?>
+
+                                                            <a href="<?php echo get_permalink( $post->ID) ?>" class="person-head" style="background-image: url(<?php echo get_template_directory_uri() ?>/img/profile_picture_default.png?>)">
+
+                                                        <?php endif; ?>
 
                                                                             <span class="twitter-info"><?php echo $twitter_desc ?></span>
                                             <?php if ( ! empty(  $twitter_username ) ): ?>
