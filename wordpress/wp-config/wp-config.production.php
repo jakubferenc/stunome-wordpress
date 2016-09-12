@@ -48,4 +48,4 @@ define( 'SAVEQUERIES', false );
 
 define( 'SCRIPT_DEBUG', false );
 
-define('WP_CACHE', true); //Added by WP-Cache Manager
+define('WP_CACHE', false); //Added by WP-Cache Manager
