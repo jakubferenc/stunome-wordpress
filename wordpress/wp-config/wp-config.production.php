@@ -13,13 +13,13 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', '');
+define('DB_NAME', 'novamedia');
 
 /** MySQL database username */
-define('DB_USER', '');
+define('DB_USER', 'novamedia');
 
 /** MySQL database password */
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', '3MdQkVANd9UUxvpt');
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');
@@ -37,4 +37,15 @@ define('DB_COLLATE', '');
  * It is strongly recommended that plugin and theme developers use WP_DEBUG
  * in their development environments.
  */
+
 define('WP_DEBUG', false);
+define( 'WP_DEBUG_DISPLAY', false );
+define( 'WP_DEBUG_LOG', false );
+
+@ini_set( 'display_errors', 0 );
+
+define( 'SAVEQUERIES', false );
+
+define( 'SCRIPT_DEBUG', false );
+
+define('WP_CACHE', true); //Added by WP-Cache Manager
