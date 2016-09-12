@@ -11,7 +11,7 @@
  * @wordpress-plugin
  * Plugin Name:       Stunome Users Import
  * Plugin URI:        http://www.jakubferenc.cz
- * Description:       This is a plugin which imports usernames as posts of Lidé/osoba type
+ * Description:       This is a plugin which imports users as posts of Lidé/osoba type
  * Version:           1.0.0
  * Author:            Jakub Ferenc
  * Author URI:        http://www.jakubferenc.cz
@@ -730,8 +730,8 @@ class StunomeUsersImport {
 
                             }
 
-                            // user has an existing feed, let's update  the url'
-                            update_post_meta($post_blog_feed_id, 'wprss_url', $build_new_user['blog_feed_url']); 
+                            // user has an existing feed, let's update the url'
+                            update_post_meta($existing_blog_feed_id, 'wprss_url', $build_new_user['blog_feed_url']); 
 
                         }
 
