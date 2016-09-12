@@ -68,7 +68,7 @@ if (have_posts()) {
   \_  $$$$$$_/                                                                                                                                                                                
     \______/                                                                                                                                                                                  
 
-join the dark side: http://www.snmprijimacky.cz
+Don't be evil, become StuNoMe!: http://www.snmprijimacky.cz
 
 Stunome není jen škola, je to životní styl
 
