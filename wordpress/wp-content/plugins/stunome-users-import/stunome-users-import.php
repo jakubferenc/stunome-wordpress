@@ -106,8 +106,12 @@ class StunomeUsersImport {
                                 
                     </fieldset>
 
+                    <p>Importovat/Updatovat Twitter údaje? <input type="checkbox" checked name="import-twitter-bool"></p>
+
+                    
                     
                     <?php submit_button(__('Importovat'), 'primary','submit', TRUE); ?>
+
 
                 </form>
 
@@ -147,7 +151,7 @@ class StunomeUsersImport {
                 <div id="stunome-import__debuglist">
 
 
-                    <?php $this->normal_process_import( $processed_file['processed_array'] ); ?>
+                    <?php $this->normal_process_import( $processed_file['processed_array']); ?>
 
 
                 </div>
@@ -375,7 +379,7 @@ class StunomeUsersImport {
                             echo " <strong>OK</strong> <br>";     
 
                             // adding blog_feed_id to the profile meta for future referencing (which is faster by id than name) 
-                            echo "Adding blog feed ID to profile meta data: ";
+                            echo "Adding blog feed ID to user meta data: ";
 
                             add_post_meta($post_id, 'blog_feed_id', $post_blog_feed_id);
 
@@ -440,11 +444,15 @@ class StunomeUsersImport {
     
     public function normal_process_import($stunome_processed_users_array) {
 
+        $default_max_exec_time = ini_get('max_execution_time');
+
         set_time_limit(0);
 
         require_once plugin_dir_path( __FILE__ ) . 'includes/twitter-api-php-master/TwitterAPIExchange.php';
         require_once plugin_dir_path( __FILE__ ) . 'includes/custom-functions.php';
-  
+        
+        $do_twitter_import = ( isset( $_POST['import-twitter-bool'] ) ) ? true : false;
+
         foreach ( $stunome_processed_users_array as $user ) {
 
             // without the name and active == 1, we will not add an item
@@ -460,8 +468,8 @@ class StunomeUsersImport {
                 $this_user_twitter_result = new stdClass();
                 $twitter_profile_image_url = "";
 
-                // if there is a twitter username, download info and profile photo
-                if ( ! empty ( $user['Username'] ) ) {
+                // if there is a twitter username && checkbox to do twitter import, download info and profile photo
+                if ( ! empty ( $user['Username'] ) && $do_twitter_import ) {
 
                     $url = 'https://api.twitter.com/1.1/users/show.json';
                     $requestMethod = 'GET';
@@ -620,9 +628,16 @@ class StunomeUsersImport {
                     echo "Updating post meta<br>";
 
                     // update post meta
-                    update_post_meta($existing_id, 'twitter_username', $build_new_user['twitter_username']);
-                    update_post_meta($existing_id, 'twitter_description', $build_new_user['twitter_description']);
-                    update_post_meta($existing_id, 'twitter_profile_image_url', $build_new_user['twitter_profile_image_url']);
+
+                    // while not import through twitter api, we do not want to remove existing twitter info
+                    if ( $do_twitter_import ) {
+
+                        update_post_meta($existing_id, 'twitter_username', $build_new_user['twitter_username']);
+                        update_post_meta($existing_id, 'twitter_description', $build_new_user['twitter_description']);
+                        update_post_meta($existing_id, 'twitter_profile_image_url', $build_new_user['twitter_profile_image_url']);
+
+                    }
+
                     update_post_meta($existing_id, 'blog_url', $build_new_user['blog_url']);
                     update_post_meta($existing_id, 'blog_feed_url', $build_new_user['blog_feed_url']);
 
@@ -676,18 +691,20 @@ class StunomeUsersImport {
                     }
 
                     // updating blog feed
-
                     echo "Updating Blog Feed URL: ";
 
                     $existing_blog_feed_id = custom_post_exists_by_title ( $build_new_user['real_name'], 'wprss_feed' );
 
+                    echo "Existing blog feed id $existing_blog_feed_id<br>";
+
                     if ( ! empty ( $build_new_user['blog_feed_url'] ) ) {   
+
 
                         if ( ! $existing_blog_feed_id && ! is_wp_error( $existing_blog_feed_id )) {
 
                             // user existed before, but did not have a blog feed, we add a new one
 
-                            echo "user existed before, but did not have a blog feed, we add a new one <br>";
+                            echo "User existed before, but did not have a blog feed, we add a new one: ";
 
                             $post_blog_feed_id = wp_insert_post(array (
                                 'post_type' => 'wprss_feed',
@@ -720,9 +737,11 @@ class StunomeUsersImport {
          
                             // user has an existing feed, let's update the url'
 
-                            echo "user has an existing feed, let's update the url";
+                            echo "user has an existing feed, let's update the url: ";
 
                             update_post_meta($existing_blog_feed_id, 'wprss_url', $build_new_user['blog_feed_url']); 
+                            
+                            echo " <strong>OK</strong> <br>";
 
                         }
 
@@ -732,10 +751,55 @@ class StunomeUsersImport {
 
                             // user had a blog, but now there appears to be no url, so we delete the old blog feed
 
-                            echo "user had a blog, but now there appears to be no url, so we delete the old blog feed";
+                            echo "User had a blog, but now there is no url, so we delete the old blog feed <br>";
+
+                            echo "Deleting main blog feed: ";
 
                             wp_delete_post( $existing_blog_feed_id, true );
 
+                            echo " <strong>OK</strong> <br>";
+
+                            $the_query = new WP_Query( array( 
+                                        'post_type' => 'wprss_feed_item', 
+                                        'meta_query' => array(
+                                            array(
+                                                'key' => 'wprss_feed_id',
+                                                'value' => $existing_blog_feed_id ,  
+                                                'compare' => '=',
+                                            ),
+                                        ), 
+                                        'posts_per_page' => -1, 
+                                        'orderby' => '') 
+                              ); 
+                            
+                            $size = sizeof($the_query->posts);
+
+                            echo "There are {$size} blog feed items to delete. ";
+
+                            echo "Deleting {$size} blog feed items: ";
+
+                            if ( $size > 0 ) {
+
+                                foreach ($the_query->posts as $this_post) {
+
+                                    wp_delete_post( $this_post->ID, true );
+
+                                };
+                                
+                            }
+
+                            
+                            echo " <strong>OK</strong> <br>";
+
+                            echo "Deleting blog_feed_id meta in user {$build_new_user['real_name']}: ";
+
+                            update_post_meta($existing_id, 'blog_feed_id', '');
+
+                            echo " <strong>OK</strong> <br>";
+
+                        } else {
+
+                            echo "User does not have blog in DB, nor in import file. Do nothing. ";
                             echo " <strong>OK</strong> <br>";
 
                         }
@@ -755,6 +819,8 @@ class StunomeUsersImport {
             }
 
         }
+
+        set_time_limit($default_max_exec_time);
   
     }
 
