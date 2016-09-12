@@ -61,87 +61,90 @@
             <div class="grid">
 
                 <div class="row ">
-                        <?php $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1; ?>
-                        <?php $the_query = new WP_Query( array( 
-                            'post_type' => 'akce', 
+         
+
+                    <?php 
+
+                        global $post;
+
+                        $calendar_id = get_post_meta( $post->ID, 'calendar_id', true );
+
+                        if ( ! empty ( $calendar_id ) ) {
                             
-                            'posts_per_page' => 12, 
-                            'paged' => $paged,
-                            'orderby' => '') ); 
-                        ?>
-                        <?php 
-                            if ( $the_query->have_posts() ): ?>
+                            $events_snm = json_decode( do_shortcode( "[calendar_get_json id='{$calendar_id}']" ) );
 
-                            <?php while ( $the_query->have_posts() ) : ?>
-                                <?php $the_query->the_post(); ?>
+                        }
+
+                    ?>
+
+                    <?php if ( ! empty ( $calendar_id ) && ! empty ( $events_snm ) ): ?>
+
+                        <?php foreach ( $events_snm as $event ): ?>
+
+                            <?php
+
+                                $event_name = isset( $event[0]->title ) ? $event[0]->title : '';
+                                $event_dtstart = isset( $event[0]->start_utc ) ? $event[0]->start_utc : '';
+                                $event_dtend = isset( $event[0]->end_utc ) ? $event[0]->end_utc : '';
+                                $event_description = isset( $event[0]->description ) ? nl2br($event[0]->description) : '';
+                                $event_location = isset( $event[0]->venue ) ? $event[0]->venue : '';
+
+                                $event_link = isset( $event[0]->link ) ? $event[0]->link : '';
+
+                                $start_time = date('H:i', $event_dtstart );
+                                $end_time = date('H:i', $event_dtend );
+                                $start_day = date('j. n. Y', $event_dtstart );
+                                $end_day = date('j. n. Y', $event_dtend );
+
+                                if ( $start_day === $end_day) {
+
+                                    $full_date = "{$end_day} {$start_time} - {$end_time}";
+
+                                } else {
+
+                                    $full_date = "{$start_day} {$start_time} - {$end_day} {$end_time} ";
+
+                                }
+                                
+                                preg_match('/(https?:\/\/)?(www\.)?facebook.com\/[a-zA-Z0-9-\/]*/', $event_description, $matches_link);
+
+                                $real_link = ( isset( $matches_link[0] ) ) ? $matches_link[0] : $event_link;
+                                
+                            ?>
+
+                            <div class="col-xs-6 col-md-3">
+                                
+                                <a href="<?php echo $real_link ?>" class="item-news-link item-link">
+                                    <div class="item-event item-event-thumb item-bordered">
+
+                                        <div class="item-event-content-container">
+                
+                                            <h3 class="item-event-title"><?php echo $event_name; ?> <?php echo $full_date; ?></h3>
+                                        
+                                            <div class="item-event-content">
+                                                <p><?php echo wp_trim_words( $event_description, 20, ' [...]' ); ?></p>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
 
 
+                                    
+                                </a>
+                        
+                            </div>
+    
+                        <?php endforeach; ?>
 
-                                    <?php $feed_id = get_post_meta( $post->ID, 'wprss_feed_id', true ); ?>
-
-                                        <?php $feed_url = get_post_meta( $post->ID, 'wprss_item_permalink', true ); ?>
-
-                                            <?php $post_feed = get_post( $feed_id ); ?>
-
-                                                <?php $feed_author = $post_feed->post_title; ?>
-
-                                                    <div class="col-xs-6 col-md-3">
-
-                                                        
-
-                                                            <a href="<?php echo $feed_url; ?>" class="item-news-link item-link">
-                                                               
-                                                               <div class="item-event item-event-thumb item-bordered">
-                                                               
-                                                                <div class="item-event-header item-event-date">
-                                                                    <?php the_date() ?> /
-                                                                        <?php echo $feed_author ?>
-                                                                </div>
-
-
-
-                                                                    <div class="item-event-content-container">
-
-                                                                        <h3 class="item-event-title"><?php the_title() ?></h3>
-
-
-
-                                                                    </div>
-                                                                    
-                                                                    
-                                                                </div>
-
-
-                                                            </a>
-
-                                                        
-
-                                                    </div>
-
-
-
-
- 
-            <?php endwhile; ?>
-
-                <?php else: ?>
-                    // no posts found
                     <?php endif; ?>
 
-                        <?php /* Restore original Post Data */ wp_reset_postdata(); ?>
+                    </div>
 
 
+                </div>
 
-                            </div>
-
-                            </div>
-
-                            <div class="section-more">
-                                   
-                                <div class="nav-next alignright link-section-more"><?php previous_posts_link( 'Novější akce' ); ?></div>
-                                <div class="nav-previous alignleft link-section-more"><?php next_posts_link( 'Starší akce', $the_query->max_num_pages ); ?></div>
-
-                            </div>
+            </div>
 
 
 

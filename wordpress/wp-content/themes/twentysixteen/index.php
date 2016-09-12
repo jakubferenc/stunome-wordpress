@@ -91,36 +91,52 @@ get_header(); ?>
 
                     <?php 
 
-                        require_once ( get_template_directory() . "/config/config.php" );
-                        require_once ( get_template_directory() . "/inc/ics-parser-master/class.iCalReader.php" );
-
-                        $ical  = new ICal($config['google_calendars_ics']['snm']);
-                        $events = $ical->events();
-
-                        
+                        $events_snm = json_decode( do_shortcode( '[calendar_get_json id="9895"]' ) );
+                    
                         
                     ?>
 
-                    <?php foreach ( $events as $event ): ?>
+                    <?php foreach ( $events_snm as $event ): ?>
 
                         <?php
-                            $event_name = isset( $event['SUMMARY'] ) ? $event['SUMMARY'] : '';
-                            $event_dtstart = isset( $event['DTSTART'] ) ? $event['DTSTART'] : '';
-                            $event_description = isset( $event['DESCRIPTION'] ) ? $event['DESCRIPTION'] : '';
-                            $event_location = isset( $event['LOCATION'] ) ? $event['LOCATION'] : '';
 
+                            $event_name = isset( $event[0]->title ) ? $event[0]->title : '';
+                            $event_dtstart = isset( $event[0]->start_utc ) ? $event[0]->start_utc : '';
+                            $event_dtend = isset( $event[0]->end_utc ) ? $event[0]->end_utc : '';
+                            $event_description = isset( $event[0]->description ) ? nl2br($event[0]->description) : '';
+                            $event_location = isset( $event[0]->venue ) ? $event[0]->venue : '';
+
+                            $event_link = isset( $event[0]->link ) ? $event[0]->link : '';
+
+                            $start_time = date('H:i', $event_dtstart );
+                            $end_time = date('H:i', $event_dtend );
+                            $start_day = date('j. n. Y', $event_dtstart );
+                            $end_day = date('j. n. Y', $event_dtend );
+
+                            if ( $start_day === $end_day) {
+
+                                $full_date = "{$end_day} {$start_time} - {$end_time}";
+
+                            } else {
+
+                                $full_date = "{$start_day} {$start_time} - {$end_day} {$end_time} ";
+
+                            }
+                            
                             preg_match('/(https?:\/\/)?(www\.)?facebook.com\/[a-zA-Z0-9-\/]*/', $event_description, $matches_link);
+
+                            $real_link = ( isset( $matches_link[0] ) ) ? $matches_link[0] : $event_link;
                             
                         ?>
 
                         <div class="item-event item-event-thumb">
                             
-                            <a href="//<?php echo $matches_link[0] ?>" class="item-links">
-                                <div class=" item-event-header item-event-date"><?php echo date('H:i j. n. Y', strtotime( $event_dtstart ) ) ; ?></div>
+                            <a href="<?php echo $real_link ?>" class="item-links">
+                                <div class=" hidden item-event-header item-event-date"></div>
                                 <div class="item-event-content-container">
         
-                                    <h3 class="item-event-title"><?php echo $event_name; ?></h3>
-
+                                    <h3 class="item-event-title"><?php echo $event_name; ?> <?php echo $full_date; ?></h3>
+                                   
                                     <div class="item-event-content">
                                         <p><?php echo wp_trim_words( $event_description, 20, ' [...]' ); ?></p>
                                     </div>
@@ -139,53 +155,66 @@ get_header(); ?>
                     </div>
                     <div id="studium-events" class="tab-content-events tab-pane">
 
+                    <?php 
+
+                        $events_snm = json_decode( do_shortcode( '[calendar_get_json id="9896"]' ) );
+                    
+                        
+                    ?>
+
+                    <?php foreach ( $events_snm as $event ): ?>
+
+                        <?php
+
+                            $event_name = isset( $event[0]->title ) ? $event[0]->title : '';
+                            $event_dtstart = isset( $event[0]->start_utc ) ? $event[0]->start_utc : '';
+                            $event_dtend = isset( $event[0]->end_utc ) ? $event[0]->end_utc : '';
+                            $event_description = isset( $event[0]->description ) ? nl2br($event[0]->description) : '';
+                            $event_location = isset( $event[0]->venue ) ? $event[0]->venue : '';
+
+                            $event_link = isset( $event[0]->link ) ? $event[0]->link : '';
+
+                            $start_time = date('H:i', $event_dtstart );
+                            $end_time = date('H:i', $event_dtend );
+                            $start_day = date('j. n. Y', $event_dtstart );
+                            $end_day = date('j. n. Y', $event_dtend );
+
+                            if ( $start_day === $end_day) {
+
+                                $full_date = "{$end_day} {$start_time} - {$end_time}";
+
+                            } else {
+
+                                $full_date = "{$start_day} {$start_time} - {$end_day} {$end_time} ";
+
+                            }
+                            
+                            preg_match('/(https?:\/\/)?(www\.)?facebook.com\/[a-zA-Z0-9-\/]*/', $event_description, $matches_link);
+
+                            $real_link = ( isset( $matches_link[0] ) ) ? $matches_link[0] : $event_link;
+                            
+                        ?>
 
                         <div class="item-event item-event-thumb">
-
-                            <div class="item-event-header item-event-date">18. dubna 2016, 19:00</div>
-                            <div class="item-event-content-container">
-                                <a href="#">
-                                    <h3 class="item-event-title">Festival humanity a solidarity</h3>
-
+                            
+                            <a href="<?php echo $real_link ?>" class="item-links">
+                                <div class=" hidden item-event-header item-event-date"></div>
+                                <div class="item-event-content-container">
+        
+                                    <h3 class="item-event-title"><?php echo $event_name; ?> <?php echo $full_date; ?></h3>
+                                   
                                     <div class="item-event-content">
-                                        <p>Užijte si arabskou hudbu ze Sýrie, divoké rytmy v balkánském tempu nebo kousavé [...]</p>
+                                        <p><?php echo wp_trim_words( $event_description, 20, ' [...]' ); ?></p>
                                     </div>
-                                </a>
 
-                            </div>
+                                </div>
 
+                                
+                            </a>
+                    
                         </div>
-                        <div class="item-event item-event-thumb">
-
-                            <div class="item-event-header item-event-date">15. dubna 2016, 19:00</div>
-                            <div class="item-event-content-container">
-                                <a href="#">
-                                    <h3 class="item-event-title">Festival humanity a solidarity</h3>
-
-                                    <div class="item-event-content">
-                                        <p>Užijte si arabskou hudbu ze Sýrie, divoké rytmy v balkánském tempu [...]</p>
-                                    </div>
-                                </a>
-
-                            </div>
-
-                        </div>
-                        <div class="item-event item-event-thumb">
-
-                            <div class="item-event-header item-event-date">15. dubna 2016, 19:00</div>
-                            <div class="item-event-content-container">
-                                <a href="#">
-                                    <h3 class="item-event-title">Festival humanity a solidarity</h3>
-
-                                    <div class="item-event-content">
-                                        <p>Užijte si arabskou hudbu ze Sýrie, divoké rytmy v balkánském tempu nebo kousavé [...]</p>
-                                    </div>
-                                </a>
-
-                            </div>
-
-                        </div>
-
+  
+                    <?php endforeach; ?>
 
                     </div>
                 </div>
