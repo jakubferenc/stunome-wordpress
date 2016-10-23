@@ -1,0 +1,43 @@
+{
+  "name": "jakubferenc/skeleton-wp-install",
+  "description": "A skeleton for a WordPress site hosted by blueboard.cz",
+  "repositories":[
+    {
+        "type":"composer",
+        "url":"https://wpackagist.org"
+    }
+  ],
+  "require": {
+    "php": ">=5.4",
+    "roots/soil": "*",
+    "wpackagist-plugin/hello-dolly": "*",
+    "wpackagist-plugin/advanced-custom-fields": "*",
+    "wpackagist-plugin/aryo-activity-log": "*",	
+	"wpackagist-plugin/breadcrumb-navxt": "*",
+	"wpackagist-plugin/cc-cookie-consent": "*",
+	"wpackagist-plugin/custom-post-type-ui": "*",	
+	"wpackagist-plugin/dashicons-cpt": "*",	
+	"wpackagist-plugin/duplicate-post": "*",
+	"wpackagist-plugin/force-regenerate-thumbnails": "*",	
+	"wpackagist-plugin/google-analytics-for-wordpress": "*",
+	"wpackagist-plugin/google-calendar-events": "*",
+	"wpackagist-plugin/regenerate-thumbnails-advanced": "*",
+	"wpackagist-plugin/ssh-sftp-updater-support": "*",
+	"wpackagist-plugin/w3-total-cache": "*",
+	"wpackagist-plugin/wordpress-seo": "*",
+	"wpackagist-plugin/wp-migrate-db": "*",
+	"wpackagist-plugin/wp-rss-aggregator": "*",	
+	"wpackagist-plugin/jetpack": "*",
+    "wpackagist-plugin/lazy-load": "*",
+    "wpackagist-plugin/regenerate-thumbnails": "*",
+    "wpackagist-plugin/smartlook-visitor-screen-recording": "*"
+  },
+  "extra": {
+    "wordpress-install-dir": "/wordpress",
+    "installer-paths": {
+        "wordpress/wp-content/plugins/{$name}": ["type:wordpress-plugin"],
+        "wordpress/wp-content/themes/{$name}": ["type:wordpress-theme"],
+        "wordpress/wp-content/mu-plugins/{$name}": ["type:wordpress-muplugin"]
+    }    
+  }
+}
