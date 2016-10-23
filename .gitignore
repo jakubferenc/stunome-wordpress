@@ -29,8 +29,9 @@ Thumbs.db
 *.tar
 *.zip
 
-# ignore composer folder
+# ignore composer
 vendor
+composer.lock
 
 # ignore node/grunt dependency directories
 node_modules
@@ -55,3 +56,6 @@ wp-content/updraft
 !wordpress/wp-content/themes/
 
 !wordpress/wp-content/plugins/stunome-users-import/
+
+# track uploads htaccess for redirecting media to the real server
+!wp-content/uploads/.htaccess
