@@ -56,6 +56,7 @@ wp-content/updraft
 !wordpress/wp-content/themes/
 
 !wordpress/wp-content/plugins/stunome-users-import/
+!wordpress/wp-content/plugins/google-calendar-events
 
 # track uploads htaccess for redirecting media to the real server
 !wp-content/uploads/.htaccess
