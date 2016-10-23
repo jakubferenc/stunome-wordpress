@@ -111,13 +111,8 @@ Stunome není jen škola, je to životní styl
                 <meta name="msapplication-TileColor" content="#ffffff">
                 <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
                 <meta name="theme-color" content="#ffffff">
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-                <link rel="stylesheet" href="<?php echo get_template_directory_uri() ?>/css/bootstrap.min.css">
-
-                <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css" />
-                <link rel="stylesheet" href="<?php echo get_template_directory_uri() ?>/css/main.min.css">
-
-                <script src="<?php echo get_template_directory_uri() ?>/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+   
+                <script src="<?php echo get_template_directory_uri() ?>/src/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 
                 <?php wp_head(); ?>
     </head>
@@ -339,7 +334,7 @@ Stunome není jen škola, je to životní styl
 
                             <div class="col-xs-4">
                                 <a class="logo" href="<?php echo get_home_url(); ?>">
-                                <img src="<?php echo get_template_directory_uri() ?>/img/logo_original.png">
+                                <img src="<?php echo get_template_directory_uri() ?>/dist/img/logo_original.png">
                             </a>
                             </div>
 
@@ -360,18 +355,17 @@ Stunome není jen škola, je to životní styl
 
                                     </div>
 
-
                                     <div class="header-switches col-xs-12 col-md-4">
 
                                         <a href="#" class="header-switch header-switch-top">
                                             <svg class="icon" width="35" height="32">
-                                                <use class="icon-arrow" xlink:href="<?php echo get_template_directory_uri() ?>/img/icons.svg#arrow" />
+                                                <use class="icon-arrow" xlink:href="<?php echo get_template_directory_uri() ?>/dist/img/icons.svg#arrow" />
                                             </svg>
                                         </a>
 
                                         <a href="#" class="header-switch header-switch-menu">
                                             <svg class="icon" width="30" height="38">
-                                                <use class="icon-burger" xlink:href="<?php echo get_template_directory_uri() ?>/img/icons.svg#burger" />
+                                                <use class="icon-burger" xlink:href="<?php echo get_template_directory_uri() ?>/dist/img/icons.svg#burger" />
                                             </svg>
 
                                         </a>

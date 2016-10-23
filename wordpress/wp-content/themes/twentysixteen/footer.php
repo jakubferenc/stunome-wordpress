@@ -155,7 +155,7 @@
 
 
                         <p class="footer-ffuk-logo">
-                            <a href="http://www.ff.cuni.cz/"><img src="<?php echo get_template_directory_uri() ?>/img/logo-cuni.png"></a>
+                            <a href="http://www.ff.cuni.cz/"><img src="<?php echo get_template_directory_uri() ?>/dist/img/logo-cuni.png"></a>
                         </p>
 
                         <p>&copy; 2016 Filosofická fakulta, Univerzita Karlova</p>
@@ -172,18 +172,6 @@
         </div>
 
     </footer>
-
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script>
-        window.jQuery || document.write('<script src="<?php echo get_template_directory_uri() ?>/js/vendor/jquery-1.11.2.min.js"><\/script>')
-    </script>
-
-    <script src="<?php echo get_template_directory_uri() ?>/js/vendor/bootstrap.min.js"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
-
-    <script src="<?php echo get_template_directory_uri() ?>/js/plugins.js"></script>
-    <script src="<?php echo get_template_directory_uri() ?>/js/main.js"></script>
 
 
 <?php wp_footer(); ?>

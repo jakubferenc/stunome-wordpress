@@ -94,7 +94,7 @@
                     <div class="post-inline-image">
 
 
-                        <a href="#"><img width="100%" src="<?php echo $image[0]; ?>"></a><a href="#" class="link-more"><?php _e('Zvětšit obrázek'); ?></a>
+                        <a href="#" data-featherlight="<?php echo $image_full[0] ?>"><img width="100%" src="<?php echo $image[0]; ?>"></a><a href="#" data-featherlight="<?php echo $image_full[0] ?>" class="link-more"><?php _e('Zvětšit obrázek'); ?></a>
 
                     </div>
 

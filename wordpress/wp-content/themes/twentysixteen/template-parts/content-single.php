@@ -94,7 +94,7 @@
                     <div class="post-inline-image">
 
 
-                        <a href="#"><img width="100%" src="<?php echo $image[0]; ?>"></a><a href="#" class="link-more"><?php _e('Zvětšit obrázek'); ?></a>
+                        <a href="#" data-featherlight="<?php echo $image_full[0] ?>"><img width="100%" src="<?php echo $image[0]; ?>"></a><a href="#" data-featherlight="<?php echo $image_full[0] ?>" class="link-more"><?php _e('Zvětšit obrázek'); ?></a>
 
                     </div>
 
@@ -176,7 +176,7 @@
 
                     </section>
         
-<section class="section content-block block-with-title">
+                    <section class="section content-block block-with-title projects-after-single">
 
                         <div class="col-title">
                             <h3 class="section-title"><a href="<?php bloginfo('url'); ?>/projekty">Naše projekty</a></h3>
@@ -187,7 +187,7 @@
 
 
                             <div class="item-project">
-                                <a href="#"><img src="http://stunome-web.jakubferenc.cz/wordpress/wp-content/uploads/2016/05/ceskoslovensko_3889_animace.gif"></a>
+                                <a href="/projekt/ceskoslovensko-38-89/"><img src="/wordpress/wp-content/uploads/2016/10/ceskoslovensko_3889_animace.gif"></a>
                             </div>
 
 

@@ -438,7 +438,7 @@ get_header(); ?>
                         <p><strong class="color">Studia nových médií je navazujícím magisterským oborem na FF UK, který se pohybuje na hranici mezi humanitními a vědecky i technicky zaměřenými obory.</strong> Věnuje se jak teorii týkající se vlivu nových technologií na společnost, tak možnostem jejich aplikace. Tomu odpovídá i složení studujících – jsou mezi nimi absolventky a absolventi bakalářských oborů knihovnictví, žurnalistiky, estetiky, marketingové komunikace nebo informačních technologií.
                             <a href="#" class="item-more">
                                 <svg class="icon" width="20" height="25">
-                                    <use class="icon-arrow" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="./img/icons.svg#arrow"></use>
+                                    <use class="icon-arrow" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo get_template_directory_uri() ?>/dist/img/icons.svg#arrow"></use>
                                 </svg>
                             </a>
                         </p>

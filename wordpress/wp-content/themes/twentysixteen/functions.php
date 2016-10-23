@@ -77,6 +77,12 @@ add_action( 'wp_head', 'twentysixteen_javascript_detection', 0 );
  */
 function twentysixteen_scripts() {
 
+	wp_enqueue_style( 'stunome-fontawesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css', array() );
+	wp_enqueue_style( 'stunome-featherlight-css', 'http://cdn.rawgit.com/noelboss/featherlight/1.5.0/release/featherlight.min.css', array() );
+	wp_enqueue_style( 'stunome-css', get_template_directory_uri() . '/dist/css/main.min.css', array('stunome-fontawesome') );
+
+	wp_enqueue_script( 'stunome-featherlight', 'https://cdn.rawgit.com/noelboss/featherlight/1.5.0/release/featherlight.min.js', array('jquery'), null, true );
+	wp_enqueue_script( 'stunome-js', get_template_directory_uri() . '/dist/js/all.min.js', array('jquery'), null, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
