@@ -671,7 +671,7 @@ get_header(); ?>
                 <div class="col-md-4">
 
                     <div class="col-title">
-                        <a class="section-title" href="#">Naše projekty</a>
+                        <a class="section-title" href="/nase-projekty">Naše projekty</a>
                         <p class="section-subtitle">Na Studiích nových médií každoročně vznikají projekty, na kterých spolupracují studenti s vyučujícími i naopak. Některé později opouštějí brány školy a fungují samostatně.</p>
                     </div>
 
