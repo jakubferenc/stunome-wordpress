@@ -248,7 +248,7 @@
                     <?php endif; ?>                 
 
                     <?php if ( ! empty(  $blog_url ) ): ?>
-                    <p class="email blog"><strong>Blog:</strong> <a href="//<?php echo $blog_url ?>"><?php echo $blog_url ?></a></p>    
+                    <p class="email blog"><strong>Blog:</strong> <a href="<?php echo $blog_url ?>"><?php echo $blog_url ?></a></p>    
                     <?php endif; ?> 
 
                 </div>

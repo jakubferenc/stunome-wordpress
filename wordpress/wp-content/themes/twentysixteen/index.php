@@ -243,7 +243,7 @@ get_header(); ?>
                                                             'compare' => 'NOT LIKE',
                                                         ),
                                                     ), 
-                                                    'posts_per_page' => 6, 
+                                                    'posts_per_page' => 5, 
                                                     'orderby' => '') ); 
                                             ?>
                                 <?php 
