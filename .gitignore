@@ -34,6 +34,12 @@ vendor
 composer.json
 composer.lock
 
+# ignore node
+node_modules
+
+# build / dist files
+dist
+
 # ignore core wordpress folders
 wp-admin
 wp-includes
