@@ -19,64 +19,64 @@ if (have_posts()) {
   while (have_posts()) {
     the_post();
     $page_children = get_pages("child_of=".$post->ID."&sort_column=menu_order");
-      
+
       if ($page_children) {
-          
+
           $firstchild = $page_children [0];
           wp_redirect(get_permalink($firstchild->ID));
           exit;
       }
-      
-   
-    
-      
+
+
+
+
   }
 }
-?>   
+?>
 <!--
-   /$$ /$$         /$$   /$$                               /$$      /$$                 /$$ /$$                  /$$$$$$   /$$                     /$$ /$$                           /$$      
-  / $$/ $$        | $$$ | $$                              | $$$    /$$$                | $$|__/                 /$$__  $$ | $$                    | $$|__/                          | $$      
- /$$$$$$$$$$      | $$$$| $$  /$$$$$$  /$$  /$$  /$$      | $$$$  /$$$$  /$$$$$$   /$$$$$$$ /$$  /$$$$$$       | $$  \__//$$$$$$   /$$   /$$  /$$$$$$$ /$$  /$$$$$$   /$$$$$$$      | $$      
-|   $$  $$_/      | $$ $$ $$ /$$__  $$| $$ | $$ | $$      | $$ $$/$$ $$ /$$__  $$ /$$__  $$| $$ |____  $$      |  $$$$$$|_  $$_/  | $$  | $$ /$$__  $$| $$ /$$__  $$ /$$_____/      |__/      
- /$$$$$$$$$$      | $$  $$$$| $$$$$$$$| $$ | $$ | $$      | $$  $$$| $$| $$$$$$$$| $$  | $$| $$  /$$$$$$$       \____  $$ | $$    | $$  | $$| $$  | $$| $$| $$$$$$$$|  $$$$$$        /$$      
-|_  $$  $$_/      | $$\  $$$| $$_____/| $$ | $$ | $$      | $$\  $ | $$| $$_____/| $$  | $$| $$ /$$__  $$       /$$  \ $$ | $$ /$$| $$  | $$| $$  | $$| $$| $$_____/ \____  $$      | $$      
-  | $$| $$        | $$ \  $$|  $$$$$$$|  $$$$$/$$$$/      | $$ \/  | $$|  $$$$$$$|  $$$$$$$| $$|  $$$$$$$      |  $$$$$$/ |  $$$$/|  $$$$$$/|  $$$$$$$| $$|  $$$$$$$ /$$$$$$$/      | $$      
-  |__/|__/        |__/  \__/ \_______/ \_____/\___/       |__/     |__/ \_______/ \_______/|__/ \_______/       \______/   \___/   \______/  \_______/|__/ \_______/|_______/       |__/      
-                                                                                                                                                                                              
-                                                                                                                                                                                              
-                                                                                                                                                                                              
- /$$$$$$$$ /$$$$$$$$       /$$   /$$ /$$   /$$                                                                                                                                                
-| $$_____/| $$_____/      | $$  | $$| $$  /$$/                                                                                                                                                
-| $$      | $$            | $$  | $$| $$ /$$/                                                                                                                                                 
-| $$$$$   | $$$$$         | $$  | $$| $$$$$/                                                                                                                                                  
-| $$__/   | $$__/         | $$  | $$| $$  $$                                                                                                                                                  
-| $$      | $$            | $$  | $$| $$\  $$                                                                                                                                                 
-| $$      | $$            |  $$$$$$/| $$ \  $$                                                                                                                                                
-|__/      |__/             \______/ |__/  \__/                                                                                                                                                
-                                                                                                                                                                                              
-                                                                                                                                                                                              
-                                                                                                                                                                                              
-     /$$$$$$                 /$$                                                                                                                                                              
-   /$$$__  $$$              | $$                                                                                                                                                              
-  /$$_/  \_  $$   /$$$$$$$ /$$$$$$   /$$   /$$ /$$$$$$$   /$$$$$$  /$$$$$$/$$$$   /$$$$$$                                                                                                     
- /$$/ /$$$$$  $$ /$$_____/|_  $$_/  | $$  | $$| $$__  $$ /$$__  $$| $$_  $$_  $$ /$$__  $$                                                                                                    
-| $$ /$$  $$| $$|  $$$$$$   | $$    | $$  | $$| $$  \ $$| $$  \ $$| $$ \ $$ \ $$| $$$$$$$$                                                                                                    
-| $$| $$\ $$| $$ \____  $$  | $$ /$$| $$  | $$| $$  | $$| $$  | $$| $$ | $$ | $$| $$_____/                                                                                                    
-| $$|  $$$$$$$$/ /$$$$$$$/  |  $$$$/|  $$$$$$/| $$  | $$|  $$$$$$/| $$ | $$ | $$|  $$$$$$$                                                                                                    
-|  $$\________/ |_______/    \___/   \______/ |__/  |__/ \______/ |__/ |__/ |__/ \_______/                                                                                                    
- \  $$$   /$$$                                                                                                                                                                                
-  \_  $$$$$$_/                                                                                                                                                                                
-    \______/                                                                                                                                                                                  
+   /$$ /$$         /$$   /$$                               /$$      /$$                 /$$ /$$                  /$$$$$$   /$$                     /$$ /$$                           /$$
+  / $$/ $$        | $$$ | $$                              | $$$    /$$$                | $$|__/                 /$$__  $$ | $$                    | $$|__/                          | $$
+ /$$$$$$$$$$      | $$$$| $$  /$$$$$$  /$$  /$$  /$$      | $$$$  /$$$$  /$$$$$$   /$$$$$$$ /$$  /$$$$$$       | $$  \__//$$$$$$   /$$   /$$  /$$$$$$$ /$$  /$$$$$$   /$$$$$$$      | $$
+|   $$  $$_/      | $$ $$ $$ /$$__  $$| $$ | $$ | $$      | $$ $$/$$ $$ /$$__  $$ /$$__  $$| $$ |____  $$      |  $$$$$$|_  $$_/  | $$  | $$ /$$__  $$| $$ /$$__  $$ /$$_____/      |__/
+ /$$$$$$$$$$      | $$  $$$$| $$$$$$$$| $$ | $$ | $$      | $$  $$$| $$| $$$$$$$$| $$  | $$| $$  /$$$$$$$       \____  $$ | $$    | $$  | $$| $$  | $$| $$| $$$$$$$$|  $$$$$$        /$$
+|_  $$  $$_/      | $$\  $$$| $$_____/| $$ | $$ | $$      | $$\  $ | $$| $$_____/| $$  | $$| $$ /$$__  $$       /$$  \ $$ | $$ /$$| $$  | $$| $$  | $$| $$| $$_____/ \____  $$      | $$
+  | $$| $$        | $$ \  $$|  $$$$$$$|  $$$$$/$$$$/      | $$ \/  | $$|  $$$$$$$|  $$$$$$$| $$|  $$$$$$$      |  $$$$$$/ |  $$$$/|  $$$$$$/|  $$$$$$$| $$|  $$$$$$$ /$$$$$$$/      | $$
+  |__/|__/        |__/  \__/ \_______/ \_____/\___/       |__/     |__/ \_______/ \_______/|__/ \_______/       \______/   \___/   \______/  \_______/|__/ \_______/|_______/       |__/
+
+
+
+ /$$$$$$$$ /$$$$$$$$       /$$   /$$ /$$   /$$
+| $$_____/| $$_____/      | $$  | $$| $$  /$$/
+| $$      | $$            | $$  | $$| $$ /$$/
+| $$$$$   | $$$$$         | $$  | $$| $$$$$/
+| $$__/   | $$__/         | $$  | $$| $$  $$
+| $$      | $$            | $$  | $$| $$\  $$
+| $$      | $$            |  $$$$$$/| $$ \  $$
+|__/      |__/             \______/ |__/  \__/
+
+
+
+     /$$$$$$                 /$$
+   /$$$__  $$$              | $$
+  /$$_/  \_  $$   /$$$$$$$ /$$$$$$   /$$   /$$ /$$$$$$$   /$$$$$$  /$$$$$$/$$$$   /$$$$$$
+ /$$/ /$$$$$  $$ /$$_____/|_  $$_/  | $$  | $$| $$__  $$ /$$__  $$| $$_  $$_  $$ /$$__  $$
+| $$ /$$  $$| $$|  $$$$$$   | $$    | $$  | $$| $$  \ $$| $$  \ $$| $$ \ $$ \ $$| $$$$$$$$
+| $$| $$\ $$| $$ \____  $$  | $$ /$$| $$  | $$| $$  | $$| $$  | $$| $$ | $$ | $$| $$_____/
+| $$|  $$$$$$$$/ /$$$$$$$/  |  $$$$/|  $$$$$$/| $$  | $$|  $$$$$$/| $$ | $$ | $$|  $$$$$$$
+|  $$\________/ |_______/    \___/   \______/ |__/  |__/ \______/ |__/ |__/ |__/ \_______/
+ \  $$$   /$$$
+  \_  $$$$$$_/
+    \______/
 
 Don't be evil, become StuNoMe!: http://www.snmprijimacky.cz
 
 Stunome není jen škola, je to životní styl
 
 
--->   
+-->
     <!doctype html>
-    
-    
+
+
     <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"  <?php language_attributes(); ?>> <![endif]-->
     <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"  <?php language_attributes(); ?>> <![endif]-->
     <!--[if IE 8]>         <html class="no-js lt-ie9"  <?php language_attributes(); ?>> <![endif]-->
@@ -111,7 +111,7 @@ Stunome není jen škola, je to životní styl
                 <meta name="msapplication-TileColor" content="#ffffff">
                 <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
                 <meta name="theme-color" content="#ffffff">
-   
+
                 <script src="<?php echo get_template_directory_uri() ?>/src/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 
                 <?php wp_head(); ?>
@@ -128,10 +128,10 @@ Stunome není jen škola, je to životní styl
             <div class="slider">
 
                 <div class="slide slide-people-heads">
-                
-                   
+
+
                         <?php $the_query = new WP_Query( array( 'post_type' => 'osoba', 'posts_per_page' => -1, 'orderby' => 'rand') ); ?>
-                            <?php 
+                            <?php
                                     if ( $the_query->have_posts() ): ?>
 
                                 <?php while ( $the_query->have_posts() ) : ?>
@@ -139,14 +139,14 @@ Stunome není jen škola, je to životní styl
 
                                            <?php $twitter_username = get_post_meta( get_the_ID(), 'twitter_username', true ); ?>
                                            <?php $twitter_description = get_post_meta( get_the_ID(), 'twitter_description', true ); ?>
-                                                       
-                                                       
+
+
                                             <?php $twitter_desc = ( ! empty ( $post->content ) ) ? $post->content : $twitter_description; ?>
-    
+
                                                         <?php if (has_post_thumbnail( $post->ID ) ): ?>
                                                             <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'item-with-image' ); ?>
                                                             <?php $image_full = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), '' ); ?>
-                                            
+
                                                             <a href="<?php echo get_permalink( $post->ID) ?>" class="person-head" style="background-image: url(<?php echo $image[0]; ?>)">
 
                                                          <?php else: ?>
@@ -157,11 +157,11 @@ Stunome není jen škola, je to životní styl
 
                                                                             <span class="twitter-info"><?php echo $twitter_desc ?></span>
                                             <?php if ( ! empty(  $twitter_username ) ): ?>
-                                             <span class="username">@<?php echo $twitter_username ?></span>  
-                                            <?php endif; ?>    
-                                            
-                                        </a>                                                 
-         
+                                             <span class="username">@<?php echo $twitter_username ?></span>
+                                            <?php endif; ?>
+
+                                        </a>
+
 
                                         <?php endwhile; ?>
 
@@ -169,7 +169,7 @@ Stunome není jen škola, je to životní styl
                                                 // no posts found
                                                 <?php endif; ?>
 
-                                                    <?php /* Restore original Post Data */ wp_reset_postdata(); ?>                
+                                                    <?php /* Restore original Post Data */ wp_reset_postdata(); ?>
 
 
                 </div>
@@ -182,133 +182,11 @@ Stunome není jen škola, je to životní styl
 
                             <div class="container container-wider">
 
-                               
-                                <!--<div class="row">
 
-
-                                    <div class="col-xs-12 col-md-3 col-main-menu">
-
-
-                                        <div class="main-menu-title">
-                                            <p><a href="#">O oboru</a></p>
-                                        </div>
-
-                                        <ul class="nav menu-submenu hidden-xs hidden-sm">
-                                            <li><a href="#">Historie</a></li>
-                                            <li><a href="#">Charakteristika oboru</a></li>
-                                            <li><a href="#">Jednoobor/dvouobor</a></li>
-                                            <li><a href="#">Profilace</a></li>
-                                            <li><a href="#">Profily absolventek a absolventů</a></li>
-
-                                        </ul>
-
-                                    </div>
-
-                                    <div class="col-xs-12 col-md-3 col-main-menu">
-
-
-                                        <div class="main-menu-title">
-                                            <p><a href="#">Lidé</a></p>
-                                        </div>
-
-                                    </div>
-
-
-                                    <div class="col-xs-12 col-md-3 col-main-menu">
-
-
-                                        <div class="main-menu-title">
-                                            <p><a href="#">Studium</a></p>
-                                        </div>
-
-                                        <ul class="nav menu-submenu hidden-xs hidden-sm">
-                                            <li><a href="#">Rozvrh a harmonogram semestru</a></li>
-                                            <li><a href="#">Zápis předmětů</a></li>
-                                            <li><a href="#">Jak vystudovat</a></li>
-                                            <li><a href="http://uisk.ff.cuni.cz/listing.do?categoryId=14908">Rigorózní řízení <i class="fa fa-external-link"></i></a></li>
-                                            <li><a href="#">Erasmus a studium v zahraničí</a></li>
-                                            <li><a href="http://www.ff.cuni.cz/studium/stipendia/">Stipendium <i class="fa fa-external-link"></i></a></li>
-                                            <li><a href="#">Užitečné odkazy</a></li>
-                                            <li><a href="#">Stipendium</a></li>
-                                            <li><a href="#">Rigorózní řízení </a></li>
-                                            <li><a href="#">Ubytování při studiu</a></li>
-                                            <li><a href="#">Užitečné odkazy</a></li>
-                                        </ul>
-
-                                    </div>
-
-                                    <div class="col-xs-12 col-md-3 col-main-menu">
-
-
-                                        <div class="main-menu-title">
-                                            <p><a href="#">Uchazeč</a></p>
-                                        </div>
-
-                                        <ul class="nav menu-submenu hidden-xs hidden-sm">
-                                            <li><a href="#">Charakteristika oboru</a></li>
-                                            <li><a href="#">Profil absolventa</a></li>
-                                            <li><a href="#">Přijímací řízení</a></li>
-                                            <li><a href="#">Aplikace #SNMPrijimacky</a></li>
-                                        </ul>
-
-                                    </div>
-
-                                </div>
-                                
-                                <div class="row">
-
-                                    <div class="col-xs-12 col-md-3 col-main-menu">
-
-
-                                        <div class="main-menu-title">
-                                            <p><a href="#">Výzkum, projekty, akce</a></p>
-                                        </div>
-
-                                        <ul class="nav menu-submenu hidden-xs hidden-sm">
-                                            <li><a href="#">Výzkumné záměry</a></li>
-                                            <li><a href="#">Grantové projekty</a></li>
-                                            <li><a href="#">Studentské projekty</a></li>
-                                            <li><a href="#">Naše časopisy</a></li>
-                                            <li><a href="#">Pořádáme</a></li>
-                                            <li><a href="#">Pravidelné #SNM akce</a></li>
-                                        </ul>
-
-                                    </div>
-
-
-                                    <div class="col-xs-12 col-md-3 col-main-menu">
-
-
-                                        <div class="main-menu-title">
-                                            <p><a href="#">FAQ</a></p>
-                                        </div>
-
-
-                                    </div>
-
-                                    <div class="col-xs-12 col-md-3 col-main-menu">
-
-
-                                        <div class="main-menu-title">
-                                            <p><a href="#">Kontakt</a></p>
-                                        </div>
-
-                                        <ul class="nav menu-submenu hidden-xs hidden-sm">
-                                            <li><a href="#">Přijďte za námi</a></li>
-                                            <li><a href="#">Napište nám</a></li>
-                                            <li><a href="#">Kontaktní formulář</a></li>
-                                            <li><a href="#">Sledujte nás</a></li>
-                                        </ul>
-
-                                    </div>
-
-                                </div>-->
-                                
-                                
                                 <?php clean_custom_menu("primary"); ?>
 
 
-                           
+
                             </div>
 
 
@@ -345,13 +223,13 @@ Stunome není jen škola, je to životní styl
                                     <div class="hidden-xs hidden-sm header-quick-links col-md-8">
 
                                         <p>Rychlé odkazy:</p>
-                                         <?php                            
+                                         <?php
                                         wp_nav_menu( array(
                                             'theme_location' => 'quick-links',
                                             'items_wrap'     => '<ul class="nav">%3$s</ul>'
-                                        ) );                                        
-                                        ?>                       
-                  
+                                        ) );
+                                        ?>
+
 
                                     </div>
 
@@ -393,36 +271,36 @@ Stunome není jen škola, je to životní styl
                         <div class="page-main-header">
 
                             <div class="row visible-xs visible-sm">
-                               
+
                                 <div class="col-sm-6">
 
                                     <div class="header-quick-links header-quick-links-mobile">
 
 
                                         <p>Rychlé odkazy:</p>
-                                         <?php                            
+                                         <?php
                                         wp_nav_menu( array(
                                             'theme_location' => 'quick-links',
                                             'items_wrap'     => '<ul class="nav">%3$s</ul>'
-                                        ) );                                        
-                                        ?> 
+                                        ) );
+                                        ?>
 
                                     </div>
-                                
-                                </div>    
-                                <div class="col-sm-6">    
-                                    
+
+                                </div>
+                                <div class="col-sm-6">
+
                                     <div class="header-quick-mobile-social-links">
                                         <p>Jsme na sociálních sítích</p>
                                         <div class="social-icons">
-                                            
+
                                             <a href="#" class="social-icon-twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                                             <a href="#" class="social-icon-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                                             <a href="#" class="social-icon-youtube"><i class="fa fa-youtube" aria-hidden="true"></i></a>
                                             <a href="#" class="social-icon-slideshare"><i class="fa fa-slideshare" aria-hidden="true"></i></a>
 
                                         </div>
-                                        
+
                                     </div>
 
 
