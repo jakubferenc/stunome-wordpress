@@ -39,7 +39,7 @@
 
                 <ul class="nav">
                     <?php
-               
+
 
                 wp_list_pages( array(
                     'title_li' => '',
@@ -60,37 +60,39 @@
 
                 <div class="row ">
 
-                   
+
                         <?php $the_query = new WP_Query( array( 'post_type' => 'projekt', 'category_name' => $pagename, 'posts_per_page' => -1 ) ); ?>
-                            <?php 
+                            <?php
                                     if ( $the_query->have_posts() ): ?>
 
                                 <?php while ( $the_query->have_posts() ) : ?>
                                     <?php $the_query->the_post(); ?>
 
+
                                             <div class="col-xs-6 col-md-3">
-                                                <div class="item-profile-thumb item-with-image">
+                                                <div class="item-thumb item-profile-thumb item-with-image">
                                                     <a href="<?php echo get_permalink(); ?>" class="item-link">
 
                                                         <?php if (has_post_thumbnail( $post->ID ) ): ?>
                                                             <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'item-with-image' ); ?>
                                                                 <?php $image_full = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), '' ); ?>
                                                                     <p class="item-image">
+                                                                        <span class="item-link-hover-excerpt"><?php echo get_the_excerpt(); ?></span>
                                                                         <img src="<?php echo $image[0]; ?>">
                                                                     </p>
 
                                                                     <?php endif; ?>
 
                                                                         <div class="item-content-container">
-                                                                                
+
                                                                             <div class="item-thumb-title-container">
-                                                                                
-                                                                                
+
+
                                                                                  <h2 class="item-title"><?php the_title() ?></h2>
-                                                                                
+
                                                                             </div>
-                                                                                
-                                                                           
+
+
 
                                                                         </div>
 

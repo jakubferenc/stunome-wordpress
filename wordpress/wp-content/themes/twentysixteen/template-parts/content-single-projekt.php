@@ -53,11 +53,11 @@
 
                     ?>
 
-                    <?php                  
+                    <?php
                         $show_image_in_content = get_post_meta( get_the_ID(), 'show_image_in_content', true );
                     ?>
-                    
-                    
+
+
                     <?php if ( ! empty(  $show_image_in_content ) &&  $show_image_in_content == 1): ?>
 
                         <?php if (has_post_thumbnail( $post->ID ) ): ?>
@@ -67,13 +67,13 @@
                                 <img src="<?php echo $image[0]; ?>">
                             </div>
 
-                        <?php endif; ?>   
-                            
-                                    
-                            
+                        <?php endif; ?>
+
+
+
                     <?php endif; ?>
-        
-           
+
+
             </div>
 
             <div class="post-inline-attachment post-aside col-md-4 col-md-offset-1">
@@ -81,13 +81,46 @@
 
                 <div class="post-inline-widget">
 
-                    <p><strong>přidal</strong>: <a href="#"><?php the_author() ?></a></p>
-                    <p><strong>dne</strong>: <?php the_date() ?> </p>
+                    <?php $authors_ids = explode(',', get_post_meta($post->ID, 'project_author', true)); ?>
+
+                    <p><strong><?php echo (count($authors_ids) > 1) ? 'autoři' : 'autor'?> projektu</strong>:</p>
+                    <div class="post-authors-container">
+                        <?php foreach ($authors_ids as $author_id): ?>
+                           <?php
+
+                            $post_author = get_post( $author_id );
+                        ?>
+                            <?php if (has_post_thumbnail( $post_author ->ID ) ): ?>
+                                <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post_author ->ID ), '' ); ?>
+                                <?php $image_full = wp_get_attachment_image_src( get_post_thumbnail_id( $post_author ->ID ), '' ); ?>
+                                <div class="post-detail-author">
+                                    <a href="<?php echo get_permalink($post_author);?>">
+                                        <img src="<?php echo $image[0]; ?>">
+                                        <span class="post-detail-author-title"><?php echo $post_author->post_title ?></span>
+                                    </a>
+                                </div>
+
+                            <?php endif; ?>
+
+                        <?php endforeach; ?>
+                    </div>
+                    <p><strong>tagy</strong>:
+
+                    <?php
+                        $posttags = get_the_tags();
+                        if ($posttags) {
+                            foreach($posttags as $tag) {
+                                echo $tag->name . ' ';
+                            }
+                        }
+                    ?>
+
+                     </p>
 
                 </div>
 
 
-                                
+
                 <?php if (has_post_thumbnail( $post->ID ) ): ?>
                     <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), '' ); ?>
                     <?php $image_full = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), '' ); ?>
@@ -98,8 +131,8 @@
 
                     </div>
 
-                <?php endif; ?>  
-            
+                <?php endif; ?>
+
 
             </div>
 
@@ -107,11 +140,11 @@
 
         </div>
 
-        
+
         <section class="section content-block block-with-title block-border">
 
                         <div class="col-title">
-                            <h3 class="section-title"><?php _e('Další naše projekty') ?></h3>
+                            <h3 class="section-title"><?php _e('Další podobné projekty') ?></h3>
 
                         </div>
 
@@ -120,13 +153,18 @@
 
                             <div class="row ">
 
-                                 <?php 
-                        $cat_id = get_cat_ID('sticky');
-                        
-                    ?>
+                        <?php
+                            // filter Naše projekty category (id 14) which is a default one used for displaying all projects
+                            $this_project_categories = array_filter(get_the_category(), function($item) {
+                                return ($item->term_id !== 14);
+                            });
 
-                        <?php $the_query = new WP_Query( array( 'post_type' => 'projekt', 'post__not_in'=> array($post->ID), 'category__not_in' => array( $cat_id), 'posts_per_page' => 8 ) ); ?>
-                            <?php 
+                            $this_project_categories_ids = array_map(function($item) {return $item->term_id;}, $this_project_categories);
+
+                        ?>
+
+                        <?php $the_query = new WP_Query( array( 'post_type' => 'projekt', 'post__not_in'=> array($post->ID), 'category__in' => $this_project_categories_ids, 'posts_per_page' => 8 ) ); ?>
+                            <?php
                                     if ( $the_query->have_posts() ): ?>
 
                                 <?php while ( $the_query->have_posts() ) : ?>
@@ -139,14 +177,17 @@
                                                 <?php if (has_post_thumbnail( $post->ID ) ): ?>
                                                     <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'item-with-image-project-thumb' ); ?>
                                                         <?php $image_full = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), '' ); ?>
-                                                            <figure class="item-news-image" data-url="<?php echo $image_full[0]; ?>"><img src="<?php echo $image[0]; ?>"></figure>
+                                                            <figure class="item-image item-news-image" data-url="<?php echo $image_full[0]; ?>">
+                                                                <span class="item-link-hover-excerpt"><?php echo get_the_excerpt(); ?></span>
+                                                                <img src="<?php echo $image[0]; ?>">
+                                                            </figure>
 
                                                             <?php endif; ?>
 
 
 
                                                                 <h2 class="item-title"><?php the_title() ?></h2>
-                                 
+
 
 
 
@@ -165,11 +206,11 @@
                             </div>
 
 
-                            <div class="section-more"><a href="<?php bloginfo('url'); ?>/vyzkum-projekty-akce/nase-projekty" class="link-section-more">Další projekty</a></div>
+                            <div class="section-more"><a href="<?php bloginfo('url'); ?>/vyzkum-projekty-akce/nase-projekty" class="link-section-more">Všechny projekty</a></div>
 
                         </div>
 
                     </section>
-       
-        
+
+
     </article>
