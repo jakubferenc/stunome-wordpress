@@ -547,7 +547,14 @@ a.external:after, {
 .main-footer strong {font-weight: normal; color: rgba(255,255,255,0.9);}
 
 .footer-ffuk-logo {position: relative; left: -5px;}
-.footer-ffuk-logo img {width: 250px}
+.footer-ffuk-logo img {
+
+    max-width: 420px;
+
+    @media only screen and (min-width: 992px) {
+
+    }
+}
 
 .main-footer .social-icons {text-align: left;}
 .main-footer .social-icons a:hover .fa {color: #fff}

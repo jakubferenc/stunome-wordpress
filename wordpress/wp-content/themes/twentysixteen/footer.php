@@ -122,7 +122,7 @@
                             <strong>Tajemník oboru</strong>
                             <br> Mgr. Jakub Fiala
                             <br> fiala.jakub@gmail.com
-                            <br> (+420) 221 619 910
+                            <br> (+420) 608 779 861
                             <br>
                         </p>
                         <p>
@@ -155,10 +155,10 @@
 
 
                         <p class="footer-ffuk-logo">
-                            <a href="http://www.ff.cuni.cz/"><img src="<?php echo get_template_directory_uri() ?>/dist/img/logo-cuni.png"></a>
+                            <a href="http://www.ff.cuni.cz/"><img src="<?php echo get_template_directory_uri() ?>/dist/img/logo-ffuk-new-negative.svg"></a>
                         </p>
 
-                        <p>&copy; 2016 Filosofická fakulta, Univerzita Karlova</p>
+                        <p>&copy; 2017 Filozofická fakulta, Univerzita Karlova</p>
 
                     </div>
 
