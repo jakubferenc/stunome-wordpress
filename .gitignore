@@ -43,7 +43,7 @@ dist
 # ignore core wordpress folders
 wp-admin
 wp-includes
-
+wordpress/*.php
 
 # ignore everything in the "wp-content" directory, except:
 # themes
@@ -56,6 +56,8 @@ wordpress/wp-content/cache
 wordpress/wp-content/updraft
 wordpress/wp-content/upgrade
 
+!wordpress/wp-config.php
 !wordpress/wp-content/themes/
+!wordpress/wp-content/themes/twentysixteen/
 
 !wordpress/wp-content/plugins/stunome-users-import/
