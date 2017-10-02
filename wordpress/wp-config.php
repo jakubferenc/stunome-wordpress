@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
 
 // Define environment hostnames
 define('WP_ENV_DEV_HOSTNAME', 'novamedia.dev');
-define('WP_ENV_STAGING_HOSTNAME', 'novamedianew.ff.cuni.cz');
+define('WP_ENV_STAGING_HOSTNAME', 'novamedia.jakubferenc.cz');
 define('WP_ENV_PRODUCTION_HOSTNAME', 'novamedia.ff.cuni.cz');
 
 // Try environment variable 'WP_ENV'
