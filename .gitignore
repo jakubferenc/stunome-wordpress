@@ -37,6 +37,9 @@ composer.lock
 # ignore node
 node_modules
 
+# resources
+resources
+
 # build / dist files
 dist
 
