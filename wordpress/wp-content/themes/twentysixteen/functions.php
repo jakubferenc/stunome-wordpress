@@ -17,11 +17,11 @@ function twentysixteen_setup() {
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'post-thumbnails' );
 	set_post_thumbnail_size( 1200, 9999 );
-    
-    add_image_size( 'item-with-image-project-thumb', 240, 150, array( 'center', 'center' ) ); // Hard crop center
-    add_image_size( 'item-with-image', 240, 240, array( 'center', 'center' ) ); // Hard crop center
-    add_image_size( 'item-detail-aside', 400, 400, array( 'center', 'center' ) ); // Hard crop center
-	add_image_size( 'sticky-post-thumb', 800, 480, array( 'center', 'center' ) ); // Hard crop center
+
+    add_image_size( 'item-with-image-project-thumb', 240, 150, true ); // Hard crop center
+    add_image_size( 'item-with-image', 240, 240, true ); // Hard crop center
+    add_image_size( 'item-detail-aside', 400, 400, true ); // Hard crop center
+	add_image_size( 'sticky-post-thumb', 800, 480, true ); // Hard crop center
 
 	// This theme uses wp_nav_menu() in two locations.
 	register_nav_menus( array(
@@ -59,7 +59,7 @@ function twentysixteen_setup() {
 		'chat',
 	) );
 
-	
+
 }
 endif; // twentysixteen_setup
 add_action( 'after_setup_theme', 'twentysixteen_setup' );
@@ -147,9 +147,9 @@ function twentysixteen_hex2rgb( $color ) {
 
 
 
-function wpb_list_child_pages() { 
+function wpb_list_child_pages() {
 
-	global $post; 
+	global $post;
 
 	if ( is_page() && $post->post_parent ) {
 
@@ -160,7 +160,7 @@ function wpb_list_child_pages() {
 		$childpages = wp_list_pages( 'sort_column=menu_order&title_li=&child_of=' . $post->ID . '&echo=0' );
 
 	}
-		
+
 
 	if ( $childpages ) {
 
@@ -186,17 +186,17 @@ function clean_custom_menu( $theme_location ) {
 
 
         foreach( $menu_items as $menu_item ) {
-             
+
             $link = $menu_item->url;
             $title = $menu_item->title;
-            
+
             $classes_string = implode(" ", $menu_item->classes);
-            
+
             if ( !$menu_item->menu_item_parent ) {
 
                 $parent_id = $menu_item->ID;
 
-                /* 
+                /*
                     to separate top four and bottom four menu columns
                     we need to add div.row
                 */
@@ -210,21 +210,21 @@ function clean_custom_menu( $theme_location ) {
                 $menu_list .= '<div class="main-menu-title">' ."\n";
                 $menu_list .= '<p><a href="'.$link.'" class="'.$classes_string.'">'.$title.'</a></p>'."\n";
                 $menu_list .= '</div>' ."\n"; // end div.main-menu-title
-                
+
             }
- 
+
             if ( $parent_id == $menu_item->menu_item_parent ) {
- 
+
                 if ( !$submenu ) {
                     $submenu = true;
                     $menu_list .= '<ul class="nav menu-submenu hidden-xs hidden-sm">' ."\n";
                 }
- 
+
                 $menu_list .= '<li class="item">' ."\n";
                 $menu_list .= '<a href="'.$link.'" class="'.$classes_string.'">'.$title.'</a>' ."\n";
                 $menu_list .= '</li>' ."\n";
-                     
-                
+
+
                 if ( array_key_exists( $count + 1, $menu_items  ) ) {
 
                     if ( $menu_items[ $count + 1 ]->menu_item_parent != $parent_id && $submenu ) {
@@ -234,13 +234,13 @@ function clean_custom_menu( $theme_location ) {
 
                 }
 
- 
+
             }
-            
+
             if ( array_key_exists( $count + 1, $menu_items  ) ) {
 
-                if ( $menu_items[ $count + 1 ]->menu_item_parent != $parent_id ) { 
-                    $menu_list .= '</div>' ."\n";   // end div.col-main-menu   
+                if ( $menu_items[ $count + 1 ]->menu_item_parent != $parent_id ) {
+                    $menu_list .= '</div>' ."\n";   // end div.col-main-menu
                     $submenu = false;
 
 
@@ -250,24 +250,24 @@ function clean_custom_menu( $theme_location ) {
                     $menu_list .= '</div>' ."\n"; // end of div.row
 
                     }
-                    
+
                     $main_count++;
-                    
+
                 }
 
             }
 
             $count++;
- 
+
         }
 
- 
+
     } else {
 
         $menu_list = '<!-- no menu defined in location "'.$theme_location.'" -->';
 
     }
-    
+
     echo $menu_list;
 }
 
@@ -282,20 +282,20 @@ if ( ! function_exists( 'wpdocs_get_post_top_ancestor_id' ) ) {
  * Gets the id of the topmost ancestor of the current page.
  *
  * Returns the current page's id if there is no parent.
- * 
+ *
  * @return int ID of the top ancestor page.
  */
 function wpdocs_get_post_top_ancestor_id() {
     if ( ! $post = get_post() ) {
         return;
     }
-     
+
     $top_ancestor = $post->ID;
     if ( $post->post_parent ) {
         $ancestors = array_reverse( get_post_ancestors( $post->ID ) );
         $top_ancestor = $ancestors[0];
     }
-     
+
     return $top_ancestor;
 }
 } // Exists.
@@ -305,7 +305,7 @@ function wpdocs_get_post_top_ancestor_id() {
 
 function get_full_academic_name($post_id) {
 
-    $post_person = get_post( $post_id ); 
+    $post_person = get_post( $post_id );
 
     $degree_pre = get_post_meta( $post_person->ID, 'degree_pre', 'true' );
     $degree_post = get_post_meta( $post_person->ID, 'degree_post', 'true' );
