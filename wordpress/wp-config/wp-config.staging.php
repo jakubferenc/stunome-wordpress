@@ -1,5 +1,7 @@
 <?php
 
+header("X-Robots-Tag: noindex, nofollow", true);
+
 define('DB_NAME', '19218_novamedia_staging');
 define('DB_USER', '19218_32565');
 define('DB_PASSWORD', '3MdQkVANd9UUxvpt');
