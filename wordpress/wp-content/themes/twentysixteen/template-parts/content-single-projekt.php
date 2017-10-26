@@ -43,100 +43,99 @@
         </div>
 
 
-        <div class="page-content clearfix row">
-
-            <div class="post-content col-md-7">
-
-
-                <?php
-                    the_content();
-
-                    ?>
-
-                    <?php
-                        $show_image_in_content = get_post_meta( get_the_ID(), 'show_image_in_content', true );
-                    ?>
-
-
-                    <?php if ( ! empty(  $show_image_in_content ) &&  $show_image_in_content == 1): ?>
-
-                        <?php if (has_post_thumbnail( $post->ID ) ): ?>
-                            <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), '' ); ?>
-                            <?php $image_full = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), '' ); ?>
-                            <div class="post-detail-image">
-                                <img src="<?php echo $image[0]; ?>">
-                            </div>
-
-                        <?php endif; ?>
+        <div class="page-content clearfix">
 
 
 
-                    <?php endif; ?>
+            <?php $meta_year = get_post_meta($post->ID, 'project_metadata_year', true); ?>
 
 
+            <?php if ( !empty($meta_year) ): ?>
+
+            <div class=" row post-header-meta-info">
+                <ul class="nav col-xs-12">
+                    <?php if(!empty($meta_year)): ?><li><strong>Rok dokončení</strong>: <?php echo $meta_year ?></li><?php endif ?>
+                </ul>
             </div>
 
-            <div class="post-inline-attachment post-aside col-md-4 col-md-offset-1">
+            <?php endif; ?>
 
+            <div class="row">
+                <div class="post-content col-xs-12">
 
-                <div class="post-inline-widget">
-
-                    <?php $authors_ids = explode(',', get_post_meta($post->ID, 'project_author', true)); ?>
-
-                    <p><strong><?php echo (count($authors_ids) > 1) ? 'autoři' : 'autor'?> projektu</strong>:</p>
-                    <div class="post-authors-container">
-                        <?php foreach ($authors_ids as $author_id): ?>
-                           <?php
-
-                            $post_author = get_post( $author_id );
-                        ?>
-                            <?php if (has_post_thumbnail( $post_author ->ID ) ): ?>
-                                <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post_author ->ID ), '' ); ?>
-                                <?php $image_full = wp_get_attachment_image_src( get_post_thumbnail_id( $post_author ->ID ), '' ); ?>
-                                <div class="post-detail-author">
-                                    <a href="<?php echo get_permalink($post_author);?>">
-                                        <img src="<?php echo $image[0]; ?>">
-                                        <span class="post-detail-author-title"><?php echo $post_author->post_title ?></span>
-                                    </a>
-                                </div>
-
-                            <?php endif; ?>
-
-                        <?php endforeach; ?>
-                    </div>
-                    <p><strong>tagy</strong>:
 
                     <?php
-                        $posttags = get_the_tags();
-                        if ($posttags) {
-                            foreach($posttags as $tag) {
-                                echo $tag->name . ' ';
-                            }
-                        }
-                    ?>
+                        the_content();
 
-                     </p>
+                        ?>
+                </div>
+            </div>
+
+
+                <div class="post-meta-container">
+
+
+
+                <div class="row post-meta-more-info">
+
+                    <h2 class=" col-xs-12">Chceš zjistit více o projektu?</h2>
+
+                    <?php if (has_post_thumbnail( $post->ID ) ): ?>
+                    <div class=" col-xs-12 col-md-4 post-inline-image">
+                        <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), '' ); ?>
+                        <?php $image_full = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), '' ); ?>
+                        <img  src="<?php echo $image[0]; ?>">
+                    </div>
+                    <?php endif; ?>
+
+                    <?php $meta_main_url = get_post_meta($post->ID, 'project_metadata_main_url', true); ?>
+                    <?php $meta_app_download = get_post_meta($post->ID, 'project_metadata_app_download', true); ?>
+                    <?php $meta_catch_phrase = get_post_meta($post->ID, 'project_catch_phrase', true); ?>
+
+                    <?php if(!empty($meta_catch_phrase)): ?>
+                    <div class="col-xs-12 col-md-6 post-meta-catch-phrase">
+                        <p><?php echo $meta_catch_phrase ?></p>
+                        <?php if(!empty($meta_main_url)): ?><p><?php echo $meta_main_url ?></p><?php endif ?>
+                        <?php if(!empty($meta_app_download)): ?> <p><?php echo $meta_app_download ?></p><?php endif ?>
+                    </div>
+                    <?php endif ?>
 
                 </div>
 
 
 
-                <?php if (has_post_thumbnail( $post->ID ) ): ?>
-                    <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), '' ); ?>
-                    <?php $image_full = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), '' ); ?>
-                    <div class="post-inline-image">
+
+                    <div class="row post-meta-author">
+                        <h2 class="col-xs-12"><?php echo __('Chceš vědět více o autorech projektu?'); ?></h2>
+
+                        <div class="post-inline-attachment post-inline-widget post-authors-container col-xs-12">
+
+                                <?php $authors_ids = explode(',', get_post_meta($post->ID, 'project_author', true)); ?>
 
 
-                        <a href="#" data-featherlight="<?php echo $image_full[0] ?>"><img width="100%" src="<?php echo $image[0]; ?>"></a><a href="#" data-featherlight="<?php echo $image_full[0] ?>" class="link-more"><?php _e('Zvětšit obrázek'); ?></a>
+                                    <?php foreach ($authors_ids as $author_id): ?>
+                                    <?php
 
+                                        $post_author = get_post( $author_id );
+                                    ?>
+                                        <?php if (has_post_thumbnail( $post_author ->ID ) ): ?>
+                                            <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post_author ->ID ), 'item-detail-aside' ); ?>
+                                            <div class="post-detail-author">
+                                                <a href="<?php echo get_permalink($post_author);?>">
+                                                    <img src="<?php echo $image[0]; ?>">
+                                                    <span class="post-detail-author-title"><?php echo $post_author->post_title ?></span>
+                                                </a>
+                                            </div>
+
+                                        <?php endif; ?>
+
+                                    <?php endforeach; ?>
+
+
+                        </div>
                     </div>
 
-                <?php endif; ?>
-
-
             </div>
-
-
 
         </div>
 
@@ -170,12 +169,12 @@
                                 <?php while ( $the_query->have_posts() ) : ?>
                                     <?php $the_query->the_post(); ?>
 
-                                        <div class="item-thumb item-with-image col-sm-6 col-md-3">
+                                        <div class="item-thumb item-with-image col-xs-6 col-md-3">
 
                                             <a href="<?php echo get_permalink(); ?>" class="item-link">
 
                                                 <?php if (has_post_thumbnail( $post->ID ) ): ?>
-                                                    <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'item-with-image-project-thumb' ); ?>
+                                                    <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'item-with-image' ); ?>
                                                         <?php $image_full = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), '' ); ?>
                                                             <figure class="item-image item-news-image" data-url="<?php echo $image_full[0]; ?>">
                                                                 <span class="item-link-hover-excerpt"><?php echo get_the_excerpt(); ?></span>
