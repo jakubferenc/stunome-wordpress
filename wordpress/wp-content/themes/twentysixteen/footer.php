@@ -21,7 +21,7 @@
 
         <div class="social-news-wrapper">
 
-            <aside class="social-news ">
+            <aside class="social-news section-widget-tabs">
 
                 <div class="aside-header vertical-align vertical-align-centered">
 

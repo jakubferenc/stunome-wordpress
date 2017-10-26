@@ -21,10 +21,10 @@ get_header(); ?>
 
         <div class="col-md-4">
 
-            <section class="block section section-events section-widget block-content-aside">
-                
+            <section class="block section section-events section-widget section-widget-tabs block-content-aside">
+
                 <h2 class="section-title"><a href="<?php bloginfo('url'); ?>/kalendar-akci">Kalendář akcí</a></h2>
-                
+
                 <div class="section-filter">
 
                     <ul class="nav">
@@ -41,43 +41,43 @@ get_header(); ?>
 
                     <div id="recommended" class="tab-content-events tab-pane active">
 
-                         <?php $the_query = new WP_Query( array( 
-                                                    'post_type' => 'wprss_feed_item', 
+                         <?php $the_query = new WP_Query( array(
+                                                    'post_type' => 'wprss_feed_item',
                                                     'meta_query' => array(
                                                         array(
                                                             'key' => 'wprss_feed_id',
-                                                            'value' => 11381,  
+                                                            'value' => 11381,
                                                             'compare' => '=',
                                                         ),
-                                                    ), 
-                                                    'posts_per_page' => 6, 
+                                                    ),
+                                                    'posts_per_page' => 6,
                                                     'order' => 'DESC',
-                                                    'orderby' => 'date') ); 
+                                                    'orderby' => 'date') );
                                             ?>
-                                <?php 
+                                <?php
                                     if ( $the_query->have_posts() ): ?>
 
                                     <?php while ( $the_query->have_posts() ) : ?>
                                         <?php $the_query->the_post(); ?>
-                                          
+
                                             <?php $feed_id = get_post_meta( $post->ID, 'wprss_feed_id', true ); ?>
-                                           
+
                                             <?php $feed_url = get_post_meta( $post->ID, 'wprss_item_permalink', true ); ?>
-    
-                                            
+
+
                                             <div class="item-event item-event-thumb">
-                                                
+
                                                 <a href="<?php echo $feed_url; ?>" class="item-links">
                                                   <div class="hidden item-event-header item-event-date"> </div>
                                                   <div class="item-event-content-container">
-                            
+
                                                     <h3 class="item-event-title"><?php the_title() ?></h3>
 
                                                     </div>
 
-                                                    
+
                                                 </a>
-                                       
+
                                             </div>
                                             <?php endwhile; ?>
 
@@ -85,16 +85,16 @@ get_header(); ?>
                                             // no posts found
                                         <?php endif; ?>
 
-                                         <?php /* Restore original Post Data */ wp_reset_postdata(); ?>                              
-                   
+                                         <?php /* Restore original Post Data */ wp_reset_postdata(); ?>
+
                     </div>
                     <div id="snm-events" class="tab-content-events tab-pane">
 
-                    <?php 
+                    <?php
 
                         $events_snm = json_decode( do_shortcode( '[calendar_get_json id="9895"]' ) );
-                    
-                        
+
+
                     ?>
 
                     <?php foreach ( $events_snm as $event ): ?>
@@ -123,32 +123,32 @@ get_header(); ?>
                                 $full_date = "{$start_day} {$start_time} - {$end_day} {$end_time} ";
 
                             }
-                            
+
                             preg_match('/(https?:\/\/)?(www\.)?facebook.com\/[a-zA-Z0-9-\/]*/', $event_description, $matches_link);
 
                             $real_link = ( isset( $matches_link[0] ) ) ? $matches_link[0] : $event_link;
-                            
+
                         ?>
 
                         <div class="item-event item-event-thumb">
-                            
+
                             <a href="<?php echo $real_link ?>" class="item-links">
                                 <div class=" hidden item-event-header item-event-date"></div>
                                 <div class="item-event-content-container">
-        
+
                                     <h3 class="item-event-title"><?php echo $event_name; ?> <?php echo $full_date; ?></h3>
-                                   
+
                                     <div class="item-event-content">
                                         <p><?php echo wp_trim_words( $event_description, 20, ' [...]' ); ?></p>
                                     </div>
 
                                 </div>
 
-                                
+
                             </a>
-                    
+
                         </div>
-  
+
                     <?php endforeach; ?>
 
 
@@ -156,11 +156,11 @@ get_header(); ?>
                     </div>
                     <div id="studium-events" class="tab-content-events tab-pane">
 
-                    <?php 
+                    <?php
 
                         $events_snm = json_decode( do_shortcode( '[calendar_get_json id="9896"]' ) );
-                    
-                        
+
+
                     ?>
 
                     <?php foreach ( $events_snm as $event ): ?>
@@ -189,32 +189,32 @@ get_header(); ?>
                                 $full_date = "{$start_day} {$start_time} - {$end_day} {$end_time} ";
 
                             }
-                            
+
                             preg_match('/(https?:\/\/)?(www\.)?facebook.com\/[a-zA-Z0-9-\/]*/', $event_description, $matches_link);
 
                             $real_link = ( isset( $matches_link[0] ) ) ? $matches_link[0] : $event_link;
-                            
+
                         ?>
 
                         <div class="item-event item-event-thumb">
-                            
+
                             <a href="<?php echo $real_link ?>" class="item-links">
                                 <div class=" hidden item-event-header item-event-date"></div>
                                 <div class="item-event-content-container">
-        
+
                                     <h3 class="item-event-title"><?php echo $event_name; ?> <?php echo $full_date; ?></h3>
-                                   
+
                                     <div class="item-event-content">
                                         <p><?php echo wp_trim_words( $event_description, 20, ' [...]' ); ?></p>
                                     </div>
 
                                 </div>
 
-                                
+
                             </a>
-                    
+
                         </div>
-  
+
                     <?php endforeach; ?>
 
                     </div>
@@ -232,49 +232,49 @@ get_header(); ?>
                                     </h2>
 
                 <div class="section-content">
-                  
 
-                            <?php $the_query = new WP_Query( array( 
-                                                    'post_type' => 'wprss_feed_item', 
+
+                            <?php $the_query = new WP_Query( array(
+                                                    'post_type' => 'wprss_feed_item',
                                                     'meta_query' => array(
                                                         array(
                                                             'key' => 'wprss_feed_id',
-                                                            'value' => 11381,  
+                                                            'value' => 11381,
                                                             'compare' => 'NOT LIKE',
                                                         ),
-                                                    ), 
-                                                    'posts_per_page' => 5, 
-                                                    'orderby' => '') ); 
+                                                    ),
+                                                    'posts_per_page' => 5,
+                                                    'orderby' => '') );
                                             ?>
-                                <?php 
+                                <?php
                                     if ( $the_query->have_posts() ): ?>
 
                                     <?php while ( $the_query->have_posts() ) : ?>
                                         <?php $the_query->the_post(); ?>
-                                           
-                            
-                                            
+
+
+
                                             <?php $feed_id = get_post_meta( $post->ID, 'wprss_feed_id', true ); ?>
-                                           
+
                                             <?php $feed_url = get_post_meta( $post->ID, 'wprss_item_permalink', true ); ?>
-                                            
+
                                             <?php $post_feed = get_post( $feed_id ); ?>
-                                       
+
                                             <?php $feed_author = $post_feed->post_title; ?>
-                                            
+
                                             <div class="item-event item-event-thumb">
-                                                
+
                                                 <a href="<?php echo $feed_url; ?>" class="item-links">
                                                               <div class="item-event-header item-event-date"><?php the_date() ?> / <?php echo $feed_author ?></div>
                                                   <div class="item-event-content-container">
-                            
+
                                                     <h3 class="item-event-title"><?php the_title() ?></h3>
 
                                                     </div>
 
-                                                    
+
                                                 </a>
-                                       
+
                                             </div>
                                             <?php endwhile; ?>
 
@@ -282,9 +282,9 @@ get_header(); ?>
                                                     // no posts found
                                                     <?php endif; ?>
 
-                                                        <?php /* Restore original Post Data */ wp_reset_postdata(); ?>                   
-                   
-        
+                                                        <?php /* Restore original Post Data */ wp_reset_postdata(); ?>
+
+
 
                 </div>
 
@@ -304,7 +304,7 @@ get_header(); ?>
 
 
                     <?php $the_query = new WP_Query( array( 'category_name' => 'sticky' ) ); ?>
-                        <?php 
+                        <?php
                                     if ( $the_query->have_posts() ): ?>
 
                             <?php while ( $the_query->have_posts() ) : ?>
@@ -353,13 +353,13 @@ get_header(); ?>
 
                 <div class="row">
 
-                    <?php 
+                    <?php
                         $cat_id = get_cat_ID('sticky');
-                        
+
                     ?>
 
                         <?php $the_query = new WP_Query( array( 'category_name' => '', 'category__not_in' => array( $cat_id), 'posts_per_page' => 6 ) ); ?>
-                            <?php 
+                            <?php
                                     if ( $the_query->have_posts() ): ?>
 
                                 <?php while ( $the_query->have_posts() ) : ?>
@@ -375,11 +375,11 @@ get_header(); ?>
                                                             <figure class="item-news-image" data-url="<?php echo $image_full[0]; ?>"><img src="<?php echo $image[0]; ?>"></figure>
 
                                                             <?php endif; ?>
-                                                                
-                                                                
+
+
                                                                 <div class="item-thumb-title-container">
-                                                                    
-                                                                    
+
+
                                                                 <h3 class="item-news-title"><?php the_title() ?></h3>
                                                                 <div class="item-news-meta">
                                                                     <p>přidal:
@@ -387,7 +387,7 @@ get_header(); ?>
                                                                             <?php the_author() ?>
                                                                     </p>
                                                                 </div>
-                                                                    
+
                                                                 </div>
 
                                                                 <div class="item-news-content hidden">
@@ -594,12 +594,12 @@ get_header(); ?>
 
 
                             <?php $the_query = new WP_Query( array( 'post_type' => 'osoba', 'category_name' => 'Vyučující', 'posts_per_page' => 9, 'orderby' => 'rand') ); ?>
-                                <?php 
+                                <?php
                                     if ( $the_query->have_posts() ): ?>
 
                                     <?php while ( $the_query->have_posts() ) : ?>
                                         <?php $the_query->the_post(); ?>
-                                            
+
                                             <?php $full_academic_name = get_full_academic_name($post->ID); ?>
 
                                             <div class="col-xs-6 col-md-4">
@@ -616,14 +616,14 @@ get_header(); ?>
                                                                     <?php endif; ?>
 
                                                                         <div class="item-content-container">
-                                                                            
+
                                                                             <div class="item-thumb-title-container">
-                                                                                
+
                                                                                  <h2 class="item-title"><?php echo $full_academic_name; ?></h2>
-                                                                                
+
                                                                             </div>
-                                                                            
-                                                                           
+
+
 
                                                                         </div>
 
@@ -685,8 +685,8 @@ get_header(); ?>
 
 
 
-                            <?php $the_query = new WP_Query( array( 'post_type' => 'projekt', 'category_name' => '', 'posts_per_page' => -1, 'orderby' => '') ); ?>
-                                <?php 
+                            <?php $the_query = new WP_Query( array( 'post_type' => 'projekt', 'category_name' => '', 'posts_per_page' => 9, 'orderby' => 'rand') ); ?>
+                                <?php
                                     if ( $the_query->have_posts() ): ?>
 
                                     <?php while ( $the_query->have_posts() ) : ?>
@@ -708,11 +708,11 @@ get_header(); ?>
                                                                         <div class="item-content-container">
 
                                                                             <div class="item-thumb-title-container">
-                                                                                
+
                                                                                  <h2 class="item-title"><?php the_title() ?></h2>
-                                                                                
+
                                                                             </div>
-                                                                           
+
                                                                         </div>
 
 
@@ -727,6 +727,12 @@ get_header(); ?>
 
                                                         <?php /* Restore original Post Data */ wp_reset_postdata(); ?>
 
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="section-more col-xs-12"><a href="<?php bloginfo('url'); ?>/nase-projekty" class="link-section-more">Další projekty</a></div>
 
                         </div>
 
