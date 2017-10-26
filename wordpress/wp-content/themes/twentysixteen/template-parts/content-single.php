@@ -53,11 +53,11 @@
 
                     ?>
 
-                    <?php                  
+                    <?php
                         $show_image_in_content = get_post_meta( get_the_ID(), 'show_image_in_content', true );
                     ?>
-                    
-                    
+
+
                     <?php if ( ! empty(  $show_image_in_content ) &&  $show_image_in_content == 1): ?>
 
                         <?php if (has_post_thumbnail( $post->ID ) ): ?>
@@ -67,13 +67,13 @@
                                 <img src="<?php echo $image[0]; ?>">
                             </div>
 
-                        <?php endif; ?>   
-                            
-                                    
-                            
+                        <?php endif; ?>
+
+
+
                     <?php endif; ?>
-        
-           
+
+
             </div>
 
             <div class="post-inline-attachment post-aside col-md-4 col-md-offset-1">
@@ -87,7 +87,7 @@
                 </div>
 
 
-                                
+
                 <?php if (has_post_thumbnail( $post->ID ) ): ?>
                     <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), '' ); ?>
                     <?php $image_full = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), '' ); ?>
@@ -98,8 +98,8 @@
 
                     </div>
 
-                <?php endif; ?>  
-            
+                <?php endif; ?>
+
 
             </div>
 
@@ -107,7 +107,7 @@
 
         </div>
 
-        
+
         <section class="section content-block block-with-title block-border">
 
                         <div class="col-title">
@@ -120,13 +120,13 @@
 
                             <div class="row ">
 
-                                 <?php 
+                                 <?php
                         $cat_id = get_cat_ID('sticky');
-                        
+
                     ?>
 
                         <?php $the_query = new WP_Query( array( 'category_name' => '', 'post__not_in'=> array($post->ID), 'category__not_in' => array( $cat_id), 'posts_per_page' => 4 ) ); ?>
-                            <?php 
+                            <?php
                                     if ( $the_query->have_posts() ): ?>
 
                                 <?php while ( $the_query->have_posts() ) : ?>
@@ -175,11 +175,11 @@
                         </div>
 
                     </section>
-        
+
                     <section class="section content-block block-with-title projects-after-single">
 
                         <div class="col-title">
-                            <h3 class="section-title"><a href="<?php bloginfo('url'); ?>/projekty">Naše projekty</a></h3>
+                            <h3 class="section-title"><a href="<?php bloginfo('url'); ?>/nase-projekty">Naše projekty</a></h3>
 
                         </div>
 
@@ -193,6 +193,6 @@
 
                         </div>
 
-                    </section>        
-        
+                    </section>
+
     </article>
