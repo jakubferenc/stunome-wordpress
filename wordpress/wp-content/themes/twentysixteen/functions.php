@@ -23,6 +23,10 @@ function twentysixteen_setup() {
     add_image_size( 'item-detail-aside', 400, 400, true ); // Hard crop center
 	add_image_size( 'sticky-post-thumb', 800, 480, true ); // Hard crop center
 
+    // show native custom fields for posts
+    // acf started to hide them by default
+    add_filter('acf/settings/remove_wp_meta_box', '__return_false');
+
 	// This theme uses wp_nav_menu() in two locations.
 	register_nav_menus( array(
 		'primary' => __( 'Primary Menu', 'twentysixteen' ),
